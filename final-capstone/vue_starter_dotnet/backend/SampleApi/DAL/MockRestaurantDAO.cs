@@ -13,8 +13,45 @@ namespace SampleApi.DAL
         public MockRestaurantDAO(string connString)
         {
             this.connString = connString;
-            this.restaurants = new List<Restaurant> restaurants{
+            this.restaurants = new List<Restaurant>()
+            {
+                new Restaurant()
+                {
+                    RestaurantID = 1,
+                    Name = "Food Place",
+                    Address = "123 place",
+                    City = "Cleveland",
+                    State = "Ohio",
+                    ZIP = "44115",
+                    Categories = new List<String>() {"Cat Food", "Dog Food" },
+                    PriceRange = 1,
+                    Distance = 23
 
+                },
+                new Restaurant()
+                {
+                    RestaurantID = 2,
+                    Name = "Food Place",
+                    Address = "123 place",
+                    City = "Cleveland",
+                    State = "Ohio",
+                    ZIP = "44115",
+                    Categories = new List<String>() {"Cat Food", "Dog Food" },
+                    PriceRange = 1,
+                    Distance = 23
+                },
+                new Restaurant()
+                {
+                    RestaurantID = 3,
+                    Name = "Food Place",
+                    Address = "123 place",
+                    City = "Cleveland",
+                    State = "Ohio",
+                    ZIP = "44115",
+                    Categories = new List<String>() {"Cat Food", "Dog Food" },
+                    PriceRange = 1,
+                    Distance = 23
+                }
             };
 
 
@@ -22,7 +59,7 @@ namespace SampleApi.DAL
 
         public List<Restaurant> GetFilteredRestaurants(Preferences prefs)
         {
-            throw new NotImplementedException();
+            return restaurants;
         }
 
         public List<Restaurant> GetSpecificRestaurants(List<int> restaurants)

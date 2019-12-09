@@ -14,10 +14,10 @@ namespace SampleApi.Controllers
     public class RestaurantController : ControllerBase
     {
 
-       private MockRestaurantDAO Rdao;
-        private UserSqlDAO Udao;
+       private IRestaurantDAO Rdao;
+        private IUserDAO Udao;
 
-        public RestaurantController(MockRestaurantDAO Rdao, UserSqlDAO Udao)
+        public RestaurantController(IRestaurantDAO Rdao, IUserDAO Udao)
         {
             this.Rdao = Rdao;
             this.Udao = Udao;
