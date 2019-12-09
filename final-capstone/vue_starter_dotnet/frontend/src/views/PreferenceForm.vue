@@ -14,7 +14,6 @@
             <div>
                 <label for=distance>Name:</label><input id="distance" type="number" v-model="preferencesForm.distance" />
             </div>
-
         </form>
     </div>
 </template>
@@ -24,8 +23,8 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
-          cuisine: "",
-          price: 0,
+          cuisine: [],
+          price: [],
           location: "",
           distance: 0
       }

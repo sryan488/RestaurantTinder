@@ -4,7 +4,7 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
-import PreferenceForm from './views.PreferenceForm.vue'
+import PreferenceForm from './views/PreferenceForm.vue'
 
 Vue.use(Router)
 
@@ -46,13 +46,13 @@ const router = new Router({
       }
     },
     {
-      path: '/preferenceForm',
-      name: 'preferenceForm',
+      path: "/preferenceForm",
+      name: "preferenceForm",
       component: PreferenceForm,
       meta: {
         requiresAuth: false
       }
-    },
+    }
 
   ]
 })
