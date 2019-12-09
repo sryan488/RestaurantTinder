@@ -29,5 +29,39 @@ CREATE TABLE users
 	constraint pk_users primary key (id)
 );
 
+select * from users
 
+COMMIT TRANSACTION;
+
+BEGIN TRANSACTION;
+
+CREATE TABLE User_Preferences
+(
+	users_id int,
+	city varchar(50) not null,
+	cuisine varchar(50) not null,
+	price int not null,
+	distance int not null
+
+);
+
+
+COMMIT TRANSACTION;
+
+BEGIN TRANSACTION;
+
+CREATE TABLE Favorites
+(
+	users_id	int,
+	restaurant_id int,
+);
+COMMIT TRANSACTION;
+
+BEGIN TRANSACTION;
+
+CREATE TABLE Blacklist
+(
+	users_id	int,
+	restaurant_id int,
+);
 COMMIT TRANSACTION;
