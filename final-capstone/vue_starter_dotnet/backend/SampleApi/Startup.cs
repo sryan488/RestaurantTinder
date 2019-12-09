@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SampleApi.DAL;
+using SampleApi.Models;
 using SampleApi.Providers.Security;
 
 namespace SampleApi
@@ -82,6 +83,11 @@ namespace SampleApi
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
+
+            //alex added this
+            string connectionString = Configuration.GetConnectionString("Default");
+            services.AddTransient<IRestaurantDAO>(m => new MockRestaurantDAO(connectionString));
+            
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

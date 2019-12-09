@@ -23,6 +23,16 @@ namespace SampleApi.DAL
             this.connectionString = connectionString;
         }
 
+        public void AddBlacklist(User user, Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddFavorite(User user, Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Saves the user to the database.
         /// </summary>
@@ -76,6 +86,21 @@ namespace SampleApi.DAL
             }
         }
 
+        public List<Restaurant> GetBlacklist(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Restaurant> GetFavorites(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Preferences GetPreferences(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Gets the user from the database.
         /// </summary>
@@ -106,6 +131,21 @@ namespace SampleApi.DAL
             {
                 throw ex;
             }            
+        }
+
+        public void RemoveBlacklist(User user, Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFavorite(User user, Restaurant restaurant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPreferences(User user, Preferences preferences)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
