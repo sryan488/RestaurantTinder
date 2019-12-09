@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace SampleApi.Models
 {
+    /// <summary>
+    /// Restaurant Model
+    /// </summary>
     public class Restaurant
     {
         /// <summary>
