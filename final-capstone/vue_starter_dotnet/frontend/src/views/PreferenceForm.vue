@@ -3,16 +3,36 @@
     <h1> FILL OUT THIS FORM </h1>
         <form v-on:submit.prevent="submitPreferences">
             <div>
-                <label for=cuisine>Name:</label><input id="cuisine" type="text" v-model="preferencesForm.cuisine" />
-            </div>
-            <div>
-                <label for=price>Name:</label><input id="price" type="number" v-model="preferencesForm.price" />
-            </div>
-            <div>
-                <label for=location>Name:</label><input id="location" type="text" v-model="preferencesForm.location" />
-            </div>
-            <div>
-                <label for=distance>Name:</label><input id="distance" type="number" v-model="preferencesForm.distance" />
+                <h2> Cuisine </h2>
+                <label for=italian>Italian </label>
+                <input type="checkbox" >
+                <label for=cuisine>Chinese </label>
+                <input type="checkbox" >
+                <label for=cuisine>Mexican </label>
+                <input type="checkbox" >
+                <label for=cuisine>American </label>
+                <input type="checkbox" >
+                <h2> Price Range </h2>
+                <label for=$>$ </label>
+                <input type="checkbox" >
+                <label for=$$>$$ </label>
+                <input type="checkbox" >
+                <label for=$$$>$$$ </label>
+                <input type="checkbox" >
+                <label for=$$$$>$$$$ </label>
+                <input type="checkbox" >
+                <h2> Location </h2>
+                <label for=city>City: </label>
+                <input type="text" >
+                <h2> Distance 
+                    <select>
+                        <option value="5 mi">5 mi</option>
+                        <option value="10 mi">10 mi</option>
+                        <option value="25 mi">25 mi</option>
+                        <option value="50 mi">50 mi</option>
+                        <option value="100 mi">100 mi</option>
+                    </select>
+                </h2>
             </div>
         </form>
     </div>
@@ -24,9 +44,9 @@ export default {
   data() {
       return {
           cuisine: [],
-          price: [],
-          location: "",
-          distance: 0
+          priceRange: [],
+          city: "",
+          searchRadius: 0
       }
   }
 }
