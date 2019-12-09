@@ -19,7 +19,7 @@ namespace SampleApi.Models
 
         public string City { get; set; }
 
-        public double Distance { get; set; } // distance in miles
+        public double SearchRadius { get; set; } // distance in miles
 
     }
 }

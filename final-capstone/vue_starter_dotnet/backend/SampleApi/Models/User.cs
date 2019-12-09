@@ -35,5 +35,25 @@ namespace SampleApi.Models
         /// The user's role.
         /// </summary>
         public string Role { get; set; }
+
+        /// <summary>
+        /// User preferences set at login.
+        /// </summary>
+        public Preferences Preferences { get; set; }
+
+        /// <summary>
+        /// List of favorited Restaurant IDs.
+        /// </summary>
+        public List<int> Favorites { get; set; }
+
+        /// <summary>
+        /// List of blacklisted Restaurant IDs.
+        /// </summary>
+        public List<int> Blacklist { get; set; }
+
+        /// <summary>
+        /// Contains restaurant ids and whether the user liked (true) or disliked (false) the restaurant.
+        /// </summary>
+        public Dictionary<int, bool> LikesAndDislikes { get; set; } = new Dictionary<int, bool>() {};
     }
 }
