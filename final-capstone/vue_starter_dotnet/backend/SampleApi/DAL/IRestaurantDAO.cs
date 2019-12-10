@@ -20,6 +20,8 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="restaurants">List of restaurant IDs.</param>
         /// <returns></returns>
-        List<Restaurant> GetSpecificRestaurants(List<int> restaurants);
+        Restaurant GetSpecificRestaurants(int id);
+
+        List<Restaurant> GetFilteredRestaurantsByCuisine(string cuisine);
     }
 }

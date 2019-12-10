@@ -48,16 +48,18 @@ CREATE TABLE Blacklist
 );
 COMMIT TRANSACTION;
 
-BEGIN TRANSACTION;
 
-CREATE TABLE User_Preferences
+
+CREATE TABLE Preferences
 (
+	id int identity(1,1),
 	users_id int not null,
 	city varchar(50) not null,
-	cuisine varchar(max) not null,
+	cuisine_id int not null,
 	price int not null,
 	distance dec not null
 
+	constraint pk_Preferences primary key (id)
 );
 
 COMMIT TRANSACTION;
