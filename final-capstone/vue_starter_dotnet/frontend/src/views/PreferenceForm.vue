@@ -1,7 +1,7 @@
 <template>
     <div>
     <h1> FILL OUT THIS FORM </h1>
-        <form id="prefForm" v-on:submit.prevent="submitPreferences" method="post">
+        <form id="prefForm" v-on:submit.prevent="submitPreferences" >
             <div>
                 <h2> Cuisine </h2>
                     <label for=italian>Italian </label>
@@ -58,8 +58,7 @@ export default {
       }
   },
   methods: {
-      submitPreferences(){
-        console.log("completed");
+      submitPreferences(form){
         return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
         .then((response) => {
         return response.json();
