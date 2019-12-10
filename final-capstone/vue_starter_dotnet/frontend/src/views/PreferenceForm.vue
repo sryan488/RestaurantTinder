@@ -58,12 +58,12 @@ export default {
       }
   },
   methods: {
-      submitPreferences(form){
-        return fetch(`https://jsonplaceholder.typicode.com/users/`, JSON.stringify(form))
+      submitPreferences(){
+        console.log("completed");
+        return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
         .then((response) => {
         return response.json();
           });
-
       }
   }
 }
