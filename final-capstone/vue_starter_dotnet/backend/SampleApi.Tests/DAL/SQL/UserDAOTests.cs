@@ -13,6 +13,7 @@ namespace SampleApi.Tests.DAL.SQL
         UserSqlDAO dao;
 
         [TestMethod]
+        public 
         dao.GetUser()
         
     }
