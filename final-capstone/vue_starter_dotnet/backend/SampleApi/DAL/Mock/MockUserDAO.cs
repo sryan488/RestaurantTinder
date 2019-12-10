@@ -10,7 +10,7 @@ namespace SampleApi.DAL
     /// <summary>
     /// A SQL Dao for user objects.
     /// </summary>
-    public class MockUserSqlDAO : IUserDAO
+    public class MockUserDAO : IUserDAO
     {
         private readonly string connectionString;
 
@@ -18,7 +18,7 @@ namespace SampleApi.DAL
         /// Creates a new sql dao for user objects.
         /// </summary>
         /// <param name="connectionString">the database connection string</param>
-        public MockUserSqlDAO(string connectionString)
+        public MockUserDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
