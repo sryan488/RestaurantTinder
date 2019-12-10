@@ -28,27 +28,21 @@ CREATE TABLE users
 
 	constraint pk_users primary key (id)
 );
-COMMIT TRANSACTION;
 
-BEGIN TRANSACTION;
 
 CREATE TABLE Favorites
 (
 	users_id	int not null,
 	restaurant_id int not null,
 );
-COMMIT TRANSACTION;
 
-BEGIN TRANSACTION;
 
 CREATE TABLE Blacklist
 (
 	users_id	int not null,
 	restaurant_id int not null,
 );
-COMMIT TRANSACTION;
 
-BEGIN TRANSACTION;
 
 CREATE TABLE Preferences
 (

@@ -38,22 +38,27 @@ VALUES
 INSERT Preferences
   (users_id, city, cuisine, price, distance)
 VALUES
-  (15, 'Cleveland', 'Italian', 3, 4.6);
+  (1, 'Cleveland', 'Italian', 3, 4.6);
 
   INSERT INTO Preferences
   (users_id, city, cuisine, price, distance)
 VALUES
-  (16, 'Pittsburgh', 'American', 1, 10);
+  (2, 'Pittsburgh', 'American', 1, 10);
 
   INSERT INTO Preferences
   (users_id, city, cuisine, price, distance)
 VALUES
-  (17, 'Bay Village', 'German', 4, 15);
+  (3, 'Bay Village', 'German', 4, 15);
 
     INSERT INTO Preferences
   (users_id, city, cuisine, price, distance)
 VALUES
-   (18, 'Lakewood', 'Chinese', 2, 11);
+   (4, 'Lakewood', 'Chinese', 2, 11);
+
+       INSERT INTO Preferences
+  (users_id, city, cuisine, price, distance)
+VALUES
+   (5, 'Mentor', 'Mexican', 4, 20);
 
 
 SELECT * FROM preferences
