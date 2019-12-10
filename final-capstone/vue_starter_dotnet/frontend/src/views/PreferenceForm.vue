@@ -1,5 +1,9 @@
 <template>
     <div>
+        <h1> SAVED PREFERENCES </h1>
+        <div >
+
+        </div>
     <h1> FILL OUT THIS FORM </h1>
         <form id="prefForm" v-on:submit.prevent="submitPreferences" >
             <div>
@@ -49,12 +53,18 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
-          form: {
-            userID: 2,
-            cuisine: [],
-            priceRange: [],
-            city: "",
-            searchRadius: 0
+            preferences: {
+                cuisine: "",
+                priceRange: 0,
+                city: "",
+                searchRadius: 0
+            },
+            form: {
+                userID: 2,
+                cuisine: [],
+                priceRange: [],
+                city: "",
+                searchRadius: 0
             }
       }
   },
@@ -72,6 +82,17 @@ export default {
         return response.json();
           });
       }
+  },
+    created() {
+    // load the preferences
+    fetch("https://localhost:44392/api/values")
+      .then((response) => {
+        return response.json();
+      })
+      .then((preferences) => {
+        this.preferences = preferences;
+      })
+      .catch((err) => console.error(err));
   }
 }
   
