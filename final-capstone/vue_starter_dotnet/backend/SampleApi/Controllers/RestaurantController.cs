@@ -28,8 +28,30 @@ namespace SampleApi.Controllers
         /// Returns list of restaurants for a customer
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{username}", Name = "GetRestaurantsById")]
-        public ActionResult<List<Restaurant>> GetFilteredRestaurants(string username)
+        //[HttpGet("{username}", Name = "GetRestaurantsById")]
+        //public ActionResult<List<Restaurant>> GetFilteredRestaurants(int userId)
+        //{
+        //    //User user = Udao.GetUser(username);
+        //    User user = new User()
+        //    {
+        //        Id = 12345,
+        //        Username = "sam1776",
+        //    };
+        //    Preferences pref = Udao.GetPreferences(user);
+        //    List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(pref);
+
+        //    // Return 200 OK
+        //    return Ok(restaurants);
+        //}
+
+        /// <summary>
+        /// Filter by cusine 
+        /// </summary>
+        /// <param name="cuisine"></param>
+        /// <returns></returns>
+        [Route("api/User/cuisine")]
+        [HttpGet("{cuisine}", Name = "GetRestaurantsByCusine")]
+        public ActionResult<List<Restaurant>> GetFilteredRestaurantsByCusine(string cuisine)
         {
             //User user = Udao.GetUser(username);
             User user = new User()
@@ -38,11 +60,36 @@ namespace SampleApi.Controllers
                 Username = "sam1776",
             };
             Preferences pref = Udao.GetPreferences(user);
-            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(pref);
+            List<Restaurant> restaurants = Rdao.GetFilteredRestaurantsByCuisine(cuisine);
 
             // Return 200 OK
             return Ok(restaurants);
         }
+
+
+        /// <summary>
+        /// Remove from blacklist, whitelist
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var restToRemove = Rdao.GetSpecificRestaurants(id);
+
+            if (restToRemove == null)
+            {
+                // return HTTP 404
+                return NotFound();
+            }
+
+            // delete the resource
+            //Udao.RemoveFavorite(id);
+
+            // return HTTP 201
+            return NoContent();
+        }
+
 
         /// <summary>
         /// 

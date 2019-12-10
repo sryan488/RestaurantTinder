@@ -48,7 +48,7 @@ namespace SampleApi.DAL
                     City = "Cleveland",
                     State = "Ohio",
                     ZIP = "44115",
-                    Categories = new List<String>() {"Cat Food", "Dog Food" },
+                    Categories = new List<String>() {"Cat", "Dog Food" },
                     PriceRange = 1,
                     Distance = 23
                 }
@@ -62,9 +62,22 @@ namespace SampleApi.DAL
             return restaurants;
         }
 
-        public List<Restaurant> GetSpecificRestaurants(List<int> restaurants)
+        public Restaurant GetSpecificRestaurants(int id)
         {
-            throw new NotImplementedException();
+            return restaurants[id];
+        }
+        public List<Restaurant> GetFilteredRestaurantsByCuisine(string cuisine)
+        {
+            List<Restaurant> output = new List<Restaurant>();
+            for(int i=0; i < restaurants.Count; i++)
+            {
+                if (restaurants[i].Categories.Contains(cuisine))
+                {
+                    output.Add(restaurants[i]);
+                }
+            }
+
+            return output;
         }
     }
 }
