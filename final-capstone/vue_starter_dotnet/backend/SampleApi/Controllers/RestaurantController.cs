@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleApi.DAL;
 using SampleApi.Models;
+using SampleApi.Models.VM;
 
 namespace SampleApi.Controllers
 {
@@ -24,7 +25,7 @@ namespace SampleApi.Controllers
         }
 
         /// <summary>
-        /// Returns all product reviews.
+        /// Returns list of restaurants for a customer
         /// </summary>
         /// <returns></returns>
         [HttpGet("{username}", Name = "GetRestaurantsById")]
@@ -41,6 +42,37 @@ namespace SampleApi.Controllers
 
             // Return 200 OK
             return Ok(restaurants);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="restaurant"></param>
+        /// <param name="user"></param>
+        /// <param name="favOrBlack"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<AddRestaurantToListVM> AddRestaurantToList([FromBody]AddRestaurantToListVM aRTLVM)
+        {
+            
+            User user = aRTLVM.User;
+            Restaurant restaurant = aRTLVM.Restaurant;
+            // Save in the dao
+            if (aRTLVM.favOrBlack)
+            {
+                Udao.AddFavorite(user, restaurant);
+            }
+            else
+            {
+                Udao.AddBlacklist(user, restaurant);
+            }
+            
+
+            // Return 201 (with a location header: https://localhost:44359/api/reviews/{id})
+            // First parameter - Name of the route to generate for API
+            // Second parameter - The variables for the route
+            // Third parameter - The response body
+            return CreatedAtRoute("AddRestaurantToList", new { id = aRTLVM.Id }, aRTLVM);
         }
     }
 }
