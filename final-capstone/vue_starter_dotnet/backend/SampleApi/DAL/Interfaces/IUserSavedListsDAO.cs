@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SampleApi.DAL.Interfaces
 {
-    public interface IUserSavedLists
+    public interface IUserSavedListsDAO
     {
         #region Favorites List
         /// <summary>

@@ -23,13 +23,21 @@ namespace SampleApi.DAL.SQL
                 List<Preferences> results = new List<Preferences>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    var cmd = new SqlCommand("");
+                    SqlCommand cmd = new SqlCommand("select * from preferences");
 
                     SqlDataReader data = cmd.ExecuteReader();
                     conn.Open();
                     while(data.Read())
                     {
-                        // TODO: parse SQL string into a list of strings
+                        Preferences pref = new Preferences()
+                        {
+                            UserID = Convert.ToInt32(data["user_id"]),
+                            Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
+                            PriceRange = DeserializePrices(Convert.ToString(data["price"])),
+                            City = Convert.ToString(data["city"]),
+                            SearchRadius = Convert.ToDouble(data["distance"])
+                        };
+                        results.Add(pref);
                     }
                     return results;
                 }
@@ -70,13 +78,20 @@ namespace SampleApi.DAL.SQL
         }
 
         #region Internal functions
-        private Preferences MapRowToPreferences(SqlDataReader reader) => new Preferences()
+        private List<string> DeserializeCategories(string categoryString)
         {
-            Categories = Convert.ToList(reader["categories"]),
-            PriceRange = Convert.ToInt32(reader["price_range"]),
-            City = Convert.ToString(reader["city"]),
-            SearchRadius = Convert.ToDouble(reader["search_radius"])
-        };
+            return categoryString.Split(',').ToList<string>();
+        }
+        private List<int> DeserializePrices(string prices)
+        {
+            List<string> list = prices.Split(',').ToList<string>();
+            List<int> results = new List<int>();
+            foreach(string str in list)
+            {
+                results.Add(Convert.ToInt32(str));
+            }
+            return results;
+        }
         #endregion
 
     }

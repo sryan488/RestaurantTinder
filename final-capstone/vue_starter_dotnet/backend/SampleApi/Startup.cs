@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SampleApi.DAL;
+using SampleApi.DAL.Interfaces;
+using SampleApi.DAL.SQL;
 using SampleApi.Models;
 using SampleApi.Providers.Security;
 
@@ -82,13 +84,13 @@ namespace SampleApi
             // Dependency Injection configuration
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
-            services.AddTransient<IUserDAO>(m => new MockUserDAO(Configuration.GetConnectionString("Default")));
 
-            //alex added this
-            string connectionString = Configuration.GetConnectionString("Default");
-            services.AddTransient<IRestaurantDAO>(m => new MockRestaurantDAO(connectionString));
-            
-
+            #region DAO Dependency Injections
+            services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
+            services.AddSingleton<IPreferencesDAO>(m => new PreferencesSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
+            services.AddSingleton<IUserSavedListsDAO>(m => new UserSavedListsSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
+            //TODO: Add restaurant DAO
+            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SampleApi.DAL.SQL
 {
-    public class UserSavedListsSqlDAO : IUserSavedLists
+    public class UserSavedListsSqlDAO : IUserSavedListsDAO
     {
         private readonly string connectionString;
         public UserSavedListsSqlDAO(string connectionString)

@@ -86,9 +86,9 @@ namespace SampleApi.Controllers
             // delete the resource
             //Udao.RemoveFavorite(id);
 
-        //    // return HTTP 201
-        //    return NoContent();
-        //}
+            // return HTTP 201
+            return NoContent();
+        }
 
 
         /// <summary>
