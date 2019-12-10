@@ -38,6 +38,7 @@
                     </select>
                         <p> Chosen distance: {{form.searchRadius}}</P>
                 </h2>
+                <button> submit </button>
             </div>
         </form>
     </div>
