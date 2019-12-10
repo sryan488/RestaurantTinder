@@ -23,13 +23,22 @@ namespace SampleApi.DAL.SQL
                 List<Preferences> results = new List<Preferences>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    var cmd = new SqlCommand("");
+                    SqlCommand cmd = new SqlCommand("select * from preferences");
 
                     SqlDataReader data = cmd.ExecuteReader();
                     conn.Open();
                     while(data.Read())
                     {
-                        // TODO: parse SQL string into a list of strings
+                        Preferences pref = new Preferences()
+                        {
+                            UserID = Convert.ToInt32(data["user_id"]),
+                            // TODO: parse category SQL string into a list of strings
+
+                            // TODO: parse price range into list
+                            City = Convert.ToString(data["city"]),
+                            SearchRadius = Convert.ToDouble(data["distance"])
+                        };
+                        results.Add(pref);
                     }
                     return results;
                 }
@@ -70,13 +79,13 @@ namespace SampleApi.DAL.SQL
         }
 
         #region Internal functions
-        private Preferences MapRowToPreferences(SqlDataReader reader) => new Preferences()
-        {
-            Categories = Convert.ToList(reader["categories"]),
-            PriceRange = Convert.ToInt32(reader["price_range"]),
-            City = Convert.ToString(reader["city"]),
-            SearchRadius = Convert.ToDouble(reader["search_radius"])
-        };
+        //private Preferences MapRowToPreferences(SqlDataReader reader) => new Preferences()
+        //{
+        //    Categories = Convert.ToList(reader["categories"]),
+        //    PriceRange = Convert.ToInt32(reader["price_range"]),
+        //    City = Convert.ToString(reader["city"]),
+        //    SearchRadius = Convert.ToDouble(reader["search_radius"])
+        //};
         #endregion
 
     }
