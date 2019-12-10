@@ -7,10 +7,11 @@ namespace SampleApi.Models
 {
     public class Preferences
     {
+        public int UserID { get; set; }
 
         public List<string> Categories { get; set; }
 
-        public int PriceRange { get; set; }
+        public List<int> PriceRange { get; set; }
 
         public string City { get; set; }
 

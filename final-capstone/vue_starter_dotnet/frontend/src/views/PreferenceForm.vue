@@ -50,16 +50,24 @@ export default {
   data() {
       return {
           form: {
-          cuisine: [],
-          priceRange: [],
-          city: "",
-          searchRadius: 0
-          }
+            userID: 2,
+            cuisine: [],
+            priceRange: [],
+            city: "",
+            searchRadius: 0
+            }
       }
   },
   methods: {
-      submitPreferences(form){
-        return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
+      submitPreferences(){
+        // return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
+        return fetch(`https://localhost:44392/api/test`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.form)
+        })
         .then((response) => {
         return response.json();
           });

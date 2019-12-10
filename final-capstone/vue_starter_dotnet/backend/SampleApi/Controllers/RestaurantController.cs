@@ -49,23 +49,23 @@ namespace SampleApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            var article = dal.GetArticle(id);
+        //[HttpDelete("{id}")]
+        //public ActionResult Delete(int id)
+        //{
+        //    var article = dal.GetArticle(id);
 
-            if (article == null)
-            {
-                // return HTTP 404
-                return NotFound();
-            }
+        //    if (article == null)
+        //    {
+        //        // return HTTP 404
+        //        return NotFound();
+        //    }
 
-            // delete the resource
-            dal.DeleteArticle(id);
+        //    // delete the resource
+        //    dal.DeleteArticle(id);
 
-            // return HTTP 201
-            return NoContent();
-        }
+        //    // return HTTP 201
+        //    return NoContent();
+        //}
 
 
         /// <summary>
