@@ -45,6 +45,30 @@ namespace SampleApi.Controllers
         }
 
         /// <summary>
+        /// Remove from blacklist, whitelist
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var article = dal.GetArticle(id);
+
+            if (article == null)
+            {
+                // return HTTP 404
+                return NotFound();
+            }
+
+            // delete the resource
+            dal.DeleteArticle(id);
+
+            // return HTTP 201
+            return NoContent();
+        }
+
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="restaurant"></param>
