@@ -33,7 +33,7 @@ namespace SampleApi.DAL.SQL
                         {
                             UserID = Convert.ToInt32(data["user_id"]),
                             // TODO: parse category SQL string into a list of strings
-
+                            cuisineCategoryString = 
                             // TODO: parse price range into list
                             City = Convert.ToString(data["city"]),
                             SearchRadius = Convert.ToDouble(data["distance"])
