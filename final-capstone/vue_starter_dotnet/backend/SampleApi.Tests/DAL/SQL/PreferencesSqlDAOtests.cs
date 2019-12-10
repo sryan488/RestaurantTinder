@@ -41,7 +41,7 @@ namespace SampleApi.Tests.DAL.SQL
         public void GetUserPrefsTest()
         {
             //TODO: put a new user transaction in here to make test resilient
-            var userPrefs = dao.GetUserPrefs(3);
+            //Preferences userPrefs = dao.GetUserPrefs(3);
         }
     }
 }
