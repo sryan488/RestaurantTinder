@@ -59,7 +59,7 @@ namespace SampleApi.Controllers
                 Id = 12345,
                 Username = "sam1776",
             };
-            Preferences pref = Udao.GetPreferences(user);
+            //Preferences pref = Udao.GetPreferences(user);
             List<Restaurant> restaurants = Rdao.GetFilteredRestaurantsByCuisine(cuisine);
 
             // Return 200 OK
@@ -107,11 +107,11 @@ namespace SampleApi.Controllers
             // Save in the dao
             if (aRTLVM.favOrBlack)
             {
-                Udao.AddFavorite(user, restaurant);
+                //Udao.AddFavorite(user, restaurant);
             }
             else
             {
-                Udao.AddBlacklist(user, restaurant);
+                //Udao.AddBlacklist(user, restaurant);
             }
             
 
