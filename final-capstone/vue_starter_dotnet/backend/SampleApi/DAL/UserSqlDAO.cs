@@ -25,12 +25,44 @@ namespace SampleApi.DAL
 
         public void AddBlacklist(User user, Restaurant restaurant)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Blacklist (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@ui", user.Id);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         public void AddFavorite(User user, Restaurant restaurant)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Favorites (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@ui", user.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -135,17 +167,68 @@ namespace SampleApi.DAL
 
         public void RemoveBlacklist(User user, Restaurant restaurant)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Blacklist (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@ui", user.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         public void RemoveFavorite(User user, Restaurant restaurant)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("REMOVE FROM Blacklist (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@ui", user.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         public void SetPreferences(User user, Preferences preferences)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO User_Preferences (categories, price_range, city, search_radius) VALUES (@categories, @price_range, @city, @search_radius) WHERE userId = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@categories", preferences.Categories);
+                    cmd.Parameters.AddWithValue("@price_range", preferences.PriceRange);
+                    cmd.Parameters.AddWithValue("@city", preferences.City);
+                    cmd.Parameters.AddWithValue("@search_radius", preferences.SearchRadius);
+                    cmd.Parameters.AddWithValue("@ui", user.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -187,5 +270,6 @@ namespace SampleApi.DAL
                 Role = Convert.ToString(reader["role"])
             };
         }
+
     }
 }
