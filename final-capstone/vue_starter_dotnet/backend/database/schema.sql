@@ -61,5 +61,3 @@ CREATE TABLE Preferences
 );
 
 COMMIT TRANSACTION;
-
-drop table preferences
