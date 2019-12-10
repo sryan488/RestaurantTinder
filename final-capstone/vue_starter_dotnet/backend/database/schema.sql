@@ -50,14 +50,16 @@ COMMIT TRANSACTION;
 
 BEGIN TRANSACTION;
 
-CREATE TABLE User_Preferences
+CREATE TABLE Preferences
 (
+	id int,
 	users_id int not null,
 	city varchar(50) not null,
 	cuisine varchar(max) not null,
 	price int not null,
-	distance dec not null
-
+	distance float not null
 );
 
 COMMIT TRANSACTION;
+
+drop table preferences

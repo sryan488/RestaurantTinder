@@ -15,13 +15,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SampleApi.DAL;
-using SampleApi.DAL.Interfaces;
-using SampleApi.DAL.SQL;
-using SampleApi.Models;
-using SampleApi.Providers.Security;
+using TeSnippets.DAL;
+using TeSnippets.Providers.Security;
 
-namespace SampleApi
+namespace TeSnippets
 {
     /// <summary>
     /// The asp.net api startup class.
@@ -49,7 +46,7 @@ namespace SampleApi
             //Configures Swagger to look at the XmlComments above our methods
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Sample API", Version = "v1" });
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "TeSnippets API", Version = "v1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -84,15 +81,10 @@ namespace SampleApi
             // Dependency Injection configuration
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
+            services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<ISnippetDAO>(m => new SnippetSqlDAO(Configuration.GetConnectionString("Default")));
 
-            #region DAO Dependency Injections
-            services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
-            services.AddSingleton<IPreferencesDAO>(m => new PreferencesSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
-            services.AddSingleton<IUserSavedListsDAO>(m => new UserSavedListsSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
-            //TODO: Add restaurant DAO
-            #endregion
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configure automatic model state validation
             // This prevents us from having to manually check model state in each action.
