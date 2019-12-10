@@ -38,9 +38,32 @@ VALUES
 
 COMMIT TRANSACTION;
 
-INSERT INTO Preferences
-  (city, cuisine, price, distance)
+INSERT Preferences
+  (users_id, city, cuisine, price, distance)
 VALUES
-  ('Cleveland', 'Italian', 3, 4.6);
+  (6, 'Cleveland', 'Italian', 3, 4.6);
 
-COMMIT TRANSACTION;
+  INSERT INTO Preferences
+  (users_id, city, cuisine, price, distance)
+VALUES
+  (2, 'Pittsburgh', 'American', 1, 10);
+
+  INSERT INTO Preferences
+  (users_id, city, cuisine, price, distance)
+VALUES
+  (3, 'Bay Village', 'German', 4, 15);
+
+    INSERT INTO Preferences
+  (users_id, city, cuisine, price, distance)
+VALUES
+  (5, 'Lakewood', 'Chinese', 2, 11);
+
+      INSERT INTO Preferences
+  (users_id, city, cuisine, price, distance)
+VALUES
+  (4, 'Berea', 'Indian', 2, 5);
+
+  SELECT * FROM preferences
+
+   SELECT * FROM users
+
