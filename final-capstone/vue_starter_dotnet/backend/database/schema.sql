@@ -52,16 +52,14 @@ BEGIN TRANSACTION;
 
 CREATE TABLE Preferences
 (
-	id int identity(1,1),
+	id int,
 	users_id int not null,
 	city varchar(50) not null,
-	cuisine varchar(50) not null,
+	cuisine varchar(max) not null,
 	price int not null,
 	distance float not null
-
-	constraint pk_Preferences primary key (id)
 );
 
 COMMIT TRANSACTION;
 
-DROP TABLE Preferences
+drop table preferences
