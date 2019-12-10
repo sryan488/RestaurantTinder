@@ -71,7 +71,7 @@ namespace SampleApi.DAL
             List<Restaurant> output = new List<Restaurant>();
             for(int i=0; i < restaurants.Count; i++)
             {
-                if (restaurants[i].Categories.Contains(cuisine))
+                if (restaurants[i].Categories.Contains("cat"))
                 {
                     output.Add(restaurants[i]);
                 }
