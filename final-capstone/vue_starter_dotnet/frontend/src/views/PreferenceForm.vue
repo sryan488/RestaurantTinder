@@ -21,23 +21,23 @@
             <div>
                 <h2> Cuisine </h2>
                     <label for=italian>Italian </label>
-                        <input type="checkbox" name="cuisine" value="Italian" v-model="form.cuisine">
+                        <input type="checkbox" name="cuisine" value="Italian" v-model="form.cuisine" :checked="form.cuisine.includes('Italian')">
                     <label for=cuisine>Chinese </label>
-                        <input type="checkbox" name="cuisine" value="Chinese" v-model="form.cuisine">
+                        <input type="checkbox" name="cuisine" value="Chinese" v-model="form.cuisine" :checked="form.cuisine.includes('Chinese')">
                     <label for=cuisine>Mexican </label>
-                        <input type="checkbox" name="cuisine" value="Mexican" v-model="form.cuisine">
+                        <input type="checkbox" name="cuisine" value="Mexican" v-model="form.cuisine" :checked="form.cuisine.includes('Mexican')">
                     <label for=cuisine>American </label>
-                        <input type="checkbox" name="cuisine" value="American" v-model="form.cuisine">
+                        <input type="checkbox" name="cuisine" value="American" v-model="form.cuisine" :checked="form.cuisine.includes('American')">
                         <p> Chosen cuisine: {{form.cuisine}} </P>
                 <h2> Price Range </h2>
                     <label for=$>$ </label>
-                        <input type="radio" name="priceRange" value="1" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="1" v-model="form.priceRange" :checked="form.priceRange == 1">
                     <label for=$$>$$ </label>
-                        <input type="radio" name="priceRange" value="2" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="2" v-model="form.priceRange" :checked="form.priceRange == 2">
                     <label for=$$$>$$$ </label>
-                        <input type="radio" name="priceRange" value="3" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="3" v-model="form.priceRange" :checked="form.priceRange == 3">
                     <label for=$$$$>$$$$ </label>
-                        <input type="radio" name="priceRange" value="4" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="4" v-model="form.priceRange" :checked="form.priceRange == 4">
                         <p> Chosen price range: {{form.priceRange}} </P>
 
                 <h2> Location </h2>
@@ -79,7 +79,7 @@ export default {
   methods: {
       submitPreferences(){
         // return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
-        return fetch(`https://localhost:44392/api/test`, {
+        return fetch(`https://localhost:44392/api/test/${this.userID}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
