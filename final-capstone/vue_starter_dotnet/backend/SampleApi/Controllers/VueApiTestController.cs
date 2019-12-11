@@ -28,21 +28,23 @@ namespace SampleApi.Controllers
             this.passwordHasher = passwordHasher;
         }
 
-        [HttpGet]
-        public List<Preferences> GetAllPreferences()
-        {
-            return prefDAO.GetAllPrefs();
-        }
+        //[HttpGet]
+        //public List<Preferences> GetAllPreferences()
+        //{
+        //    return prefDAO.GetAllPrefs();
+        //}
 
-        [HttpGet("{id}")]
-        public Preferences GetUserPreferences(int id)
+        [HttpGet]
+        public Preferences GetUserPreferences()
         {
+            int id = GetCurrentUserId();
             return prefDAO.GetUserPrefs(id);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult Update(int id, Preferences newPrefs)
+        [HttpPut]
+        public ActionResult Update(Preferences newPrefs)
         {
+            int id = GetCurrentUserId();
             if (prefDAO.GetUserPrefs(id) == null)
             {
                 return NotFound();
