@@ -50,7 +50,35 @@ namespace SampleApi.DAL.SQL
 
         public Preferences GetUserPrefs(int userID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Preferences result = new Preferences();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from preferences where users_id = @userID");
+                    cmd.Parameters.AddWithValue("@userID", userID);
+
+                    SqlDataReader data = cmd.ExecuteReader();
+                    conn.Open();
+                    while (data.Read())
+                    {
+                        Preferences pref = new Preferences()
+                        {
+                            UserID = Convert.ToInt32(data["user_id"]),
+                            Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
+                            PriceRange = DeserializePrices(Convert.ToString(data["price"])),
+                            City = Convert.ToString(data["city"]),
+                            SearchRadius = Convert.ToDouble(data["distance"])
+                        };
+                        return pref;
+                    }
+                    throw new Exception("No preferences found for user."); // if no user found;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
         }
 
         public void SetUserPrefs(int userID, Preferences preferences)
