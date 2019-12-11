@@ -29,9 +29,9 @@ namespace SampleApi.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Route("api/User/{username}")]
-        [HttpGet("{username}", Name = "GetRestaurantsById2")]
-        public ActionResult<List<Restaurant>> GetFilteredRestaurants(string username)
+        [Route("api/GetFilteredRestaurants/{id}")]
+        [HttpGet("{username}", Name = "GetRestaurantsById")]
+        public ActionResult<List<Restaurant>> GetFilteredRestaurants(int iD)
         {
             //User user = Udao.GetUser(username);
             User user = new User()
@@ -39,106 +39,106 @@ namespace SampleApi.Controllers
                 Id = 12345,
                 Username = "sam1776",
             };
-            Preferences pref = Udao.
-            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(pref);
+
+            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(iD);
 
             // Return 200 OK
             return Ok(restaurants);
         }
 
-        /// <summary>
-        /// Filter by cusine 
-        /// </summary>
-        /// <param name="cuisine"></param>
-        /// <returns></returns>
-        [Route("api/User/{id}")]
-        [HttpGet("{cuisine}", Name = "GetRestaurantsByCusine")]
-        public ActionResult<List<Restaurant>> GetFilteredRestaurantsByCusine(string cuisine)
-        {
-            //User user = Udao.GetUser(username);
-            User user = new User()
-            {
-                Id = 12345,
-                Username = "sam1776",
-            };
-            //Preferences pref = Udao.GetPreferences(user);
-            List<Restaurant> restaurants = Rdao.GetFilteredRestaurantsByCuisine(cuisine);
+        ///// <summary>
+        ///// Filter by cusine 
+        ///// </summary>
+        ///// <param name="cuisine"></param>
+        ///// <returns></returns>
+        //[Route("api/User/{id}")]
+        //[HttpGet("{cuisine}", Name = "GetRestaurantsByCusine")]
+        //public ActionResult<List<Restaurant>> GetFilteredRestaurantsByCusine(string cuisine)
+        //{
+        //    //User user = Udao.GetUser(username);
+        //    User user = new User()
+        //    {
+        //        Id = 12345,
+        //        Username = "sam1776",
+        //    };
+        //    //Preferences pref = Udao.GetPreferences(user);
+        //    List<Restaurant> restaurants = Rdao.GetFilteredRestaurantsByCuisine(cuisine);
 
-            // Return 200 OK
-            return Ok(restaurants);
-        }
-
-
-        /// <summary>
-        /// Filter by Restaurant Id
-        /// </summary>
-        /// <param name="iD"></param>
-        /// <returns></returns>
-        [Route("api/Restaurant/{iD}")]
-        [HttpGet("{iD}", Name = "GetFilteredRestaurantsById")]
-        public ActionResult<Restaurant> GetFilteredRestaurantsById(int iD)
-        {
+        //    // Return 200 OK
+        //    return Ok(restaurants);
+        //}
 
 
-            Restaurant restaurants = Rdao.GetSpecificRestaurants(iD);
-
-            // Return 200 OK
-            return Ok(restaurants);
-        }
-
-        /// <summary>
-        /// Remove from blacklist, whitelist
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            var restToRemove = Rdao.GetSpecificRestaurants(id);
-
-            if (restToRemove == null)
-            {
-                // return HTTP 404
-                return NotFound();
-            }
-
-            // delete the resource
-            //Udao.RemoveFavorite(id);
-
-            // return HTTP 201
-            return NoContent();
-        }
+        ///// <summary>
+        ///// Filter by Restaurant Id
+        ///// </summary>
+        ///// <param name="iD"></param>
+        ///// <returns></returns>
+        //[Route("api/Restaurant/{iD}")]
+        //[HttpGet("{iD}", Name = "GetFilteredRestaurantsById")]
+        //public ActionResult<Restaurant> GetFilteredRestaurantsById(int iD)
+        //{
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="restaurant"></param>
-        /// <param name="user"></param>
-        /// <param name="favOrBlack"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult<AddRestaurantToListVM> AddRestaurantToList([FromBody]AddRestaurantToListVM aRTLVM)
-        {
+        //    Restaurant restaurants = Rdao.GetSpecificRestaurants(iD);
+
+        //    // Return 200 OK
+        //    return Ok(restaurants);
+        //}
+
+        ///// <summary>
+        ///// Remove from blacklist, whitelist
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //[HttpDelete("{id}")]
+        //public ActionResult Delete(int id)
+        //{
+        //    var restToRemove = Rdao.GetSpecificRestaurants(id);
+
+        //    if (restToRemove == null)
+        //    {
+        //        // return HTTP 404
+        //        return NotFound();
+        //    }
+
+        //    // delete the resource
+        //    //Udao.RemoveFavorite(id);
+
+        //    // return HTTP 201
+        //    return NoContent();
+        //}
+
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="restaurant"></param>
+        ///// <param name="user"></param>
+        ///// <param name="favOrBlack"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public ActionResult<AddRestaurantToListVM> AddRestaurantToList([FromBody]AddRestaurantToListVM aRTLVM)
+        //{
             
-            User user = aRTLVM.User;
-            Restaurant restaurant = aRTLVM.Restaurant;
-            // Save in the dao
-            if (aRTLVM.favOrBlack)
-            {
-                //Udao.AddFavorite(user, restaurant);
-            }
-            else
-            {
-                //Udao.AddBlacklist(user, restaurant);
-            }
+        //    User user = aRTLVM.User;
+        //    Restaurant restaurant = aRTLVM.Restaurant;
+        //    // Save in the dao
+        //    if (aRTLVM.favOrBlack)
+        //    {
+        //        //Udao.AddFavorite(user, restaurant);
+        //    }
+        //    else
+        //    {
+        //        //Udao.AddBlacklist(user, restaurant);
+        //    }
             
 
-            // Return 201 (with a location header: https://localhost:44359/api/reviews/{id})
-            // First parameter - Name of the route to generate for API
-            // Second parameter - The variables for the route
-            // Third parameter - The response body
-            return CreatedAtRoute("AddRestaurantToList", new { id = aRTLVM.Id }, aRTLVM);
-        }
+        //    // Return 201 (with a location header: https://localhost:44359/api/reviews/{id})
+        //    // First parameter - Name of the route to generate for API
+        //    // Second parameter - The variables for the route
+        //    // Third parameter - The response body
+        //    return CreatedAtRoute("AddRestaurantToList", new { id = aRTLVM.Id }, aRTLVM);
+        //}
     }
 }

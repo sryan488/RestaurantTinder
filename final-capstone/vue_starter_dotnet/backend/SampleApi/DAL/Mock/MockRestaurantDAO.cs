@@ -10,6 +10,13 @@ namespace SampleApi.DAL
     {
         string connString;
         List<Restaurant> restaurants;
+        private IUserDAO Udao;
+
+        public MockRestaurantDAO(IUserDAO Udao)
+        {
+            this.Udao = Udao;
+        }
+
         public MockRestaurantDAO(string connString)
         {
             this.connString = connString;
@@ -57,8 +64,9 @@ namespace SampleApi.DAL
 
         }
 
-        public List<Restaurant> GetFilteredRestaurants(Preferences prefs)
+        public List<Restaurant> GetFilteredRestaurants(int iD)
         {
+            Udao.
             return restaurants;
         }
 
