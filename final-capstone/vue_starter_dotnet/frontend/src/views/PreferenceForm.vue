@@ -65,7 +65,6 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
-            userID: 2,
             preference: {},
             form: {
                 categories: [],
@@ -78,7 +77,7 @@ export default {
   methods: {
       submitPreferences(){
         // return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
-        return fetch(`https://localhost:44392/api/test/${this.userID}`, {
+        return fetch(`https://localhost:44392/api/test`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -94,7 +93,7 @@ export default {
   },
     created() {
     // load the preferences
-    fetch(`https://localhost:44392/api/test/${this.userID}`, {
+    fetch(`https://localhost:44392/api/test`, {
             headers: {
             Authorization: 'Bearer ' + auth.getToken(),
             },
