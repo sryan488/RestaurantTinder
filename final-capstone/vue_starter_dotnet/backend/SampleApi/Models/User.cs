@@ -36,6 +36,7 @@ namespace SampleApi.Models
         /// </summary>
         public string Role { get; set; }
 
+        // TODO: remove below properties and add userID to property objects
         /// <summary>
         /// User preferences set at login.
         /// </summary>

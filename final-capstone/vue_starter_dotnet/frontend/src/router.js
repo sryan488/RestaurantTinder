@@ -51,7 +51,7 @@ const router = new Router({
       name: "preferenceForm",
       component: PreferenceForm,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {   
@@ -59,7 +59,7 @@ const router = new Router({
       name: "results",
       component: Results,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

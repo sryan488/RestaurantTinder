@@ -1,9 +1,10 @@
 <template>
     <div>
         <h1> LAST PREFERENCES </h1>
-        <p>JSON: {{preferences}}</p>
+        <p>JSON: {{preference}}</p>
 
-        <div v-for="preference in preferences" v-bind:key="preference.userID">
+        <!-- <div v-for="preference in preferences" v-bind:key="preference.userID"> -->
+            <div>
             <p>
                 Preferences: {{preference.categories}}
             </p>
@@ -30,13 +31,13 @@
                         <p> Chosen cuisine: {{form.cuisine}} </P>
                 <h2> Price Range </h2>
                     <label for=$>$ </label>
-                        <input type="checkbox" name="priceRange" value="1" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="1" v-model="form.priceRange">
                     <label for=$$>$$ </label>
-                        <input type="checkbox" name="priceRange" value="2" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="2" v-model="form.priceRange">
                     <label for=$$$>$$$ </label>
-                        <input type="checkbox" name="priceRange" value="3" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="3" v-model="form.priceRange">
                     <label for=$$$$>$$$$ </label>
-                        <input type="checkbox" name="priceRange" value="4" v-model="form.priceRange">
+                        <input type="radio" name="priceRange" value="4" v-model="form.priceRange">
                         <p> Chosen price range: {{form.priceRange}} </P>
 
                 <h2> Location </h2>
@@ -64,12 +65,12 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
-            userID: 1,
-            preferences: [],
+            userID: 2,
+            preference: {},
             form: {
-                userID: 2,
+                userID: 0,
                 cuisine: [],
-                priceRange: [],
+                priceRange: 0,
                 city: "",
                 searchRadius: 0
             }
@@ -92,12 +93,12 @@ export default {
   },
     created() {
     // load the preferences
-    fetch("https://localhost:44392/api/test/${userID}")
+    fetch(`https://localhost:44392/api/test/${this.userID}`)
       .then((response) => {
         return response.json();
             })
-            .then((preferences) => {
-                this.preferences = preferences;
+            .then((preference) => {
+                this.preference = preference;
                 })
                 .catch((err) => console.error(err));
   }

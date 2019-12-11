@@ -23,15 +23,15 @@ namespace SampleApi.DAL.SQL
                 List<Preferences> results = new List<Preferences>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from preferences");
+                    SqlCommand cmd = new SqlCommand("select * from preferences", conn);
 
-                    SqlDataReader data = cmd.ExecuteReader();
                     conn.Open();
+                    SqlDataReader data = cmd.ExecuteReader();
                     while(data.Read())
                     {
                         Preferences pref = new Preferences()
                         {
-                            UserID = Convert.ToInt32(data["user_id"]),
+                            UserID = Convert.ToInt32(data["users_id"]),
                             Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
                             PriceRange = DeserializePrices(Convert.ToString(data["price"])),
                             City = Convert.ToString(data["city"]),
@@ -52,19 +52,18 @@ namespace SampleApi.DAL.SQL
         {
             try
             {
-                Preferences result = new Preferences();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from preferences where users_id = @userID");
+                    SqlCommand cmd = new SqlCommand("select * from preferences where users_id = @userID", conn);
                     cmd.Parameters.AddWithValue("@userID", userID);
 
-                    SqlDataReader data = cmd.ExecuteReader();
                     conn.Open();
+                    SqlDataReader data = cmd.ExecuteReader();
                     while (data.Read())
                     {
                         Preferences pref = new Preferences()
                         {
-                            UserID = Convert.ToInt32(data["user_id"]),
+                            UserID = Convert.ToInt32(data["users_id"]),
                             Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
                             PriceRange = DeserializePrices(Convert.ToString(data["price"])),
                             City = Convert.ToString(data["city"]),

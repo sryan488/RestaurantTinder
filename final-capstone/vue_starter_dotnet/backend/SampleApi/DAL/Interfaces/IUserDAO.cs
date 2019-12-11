@@ -17,6 +17,8 @@ namespace SampleApi.DAL
         /// <param name="user"></param>
         void CreateUser(User user);
 
+        //TODO: upon creation of new user creat blank row in preferences table in SQL
+
         /// <summary>
         /// Retrieves a user from the system by username.
         /// </summary>
