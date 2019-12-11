@@ -1,9 +1,20 @@
 <template>
     <div>
-        <h1> SAVED PREFERENCES </h1>
+        <h1> LAST PREFERENCES </h1>
+        <p>JSON: {{preferences}}</p>
+
+        <div v-for="preference in preferences" v-bind:key="preference.userID">
             <p>
-                Preferences: {{preferences.categories}}
+                Preferences: {{preference.categories}}
             </p>
+            <p>
+                City: {{preference.city}}
+            </p>
+            <p>
+                Price Range: {{preference.priceRange}}
+            </p>
+
+            </div>
     <h1> FILL OUT THIS FORM </h1>
         <form id="prefForm" v-on:submit.prevent="submitPreferences" >
             <div>
@@ -53,6 +64,7 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
+            userID: 1,
             preferences: [],
             form: {
                 userID: 2,
@@ -80,7 +92,7 @@ export default {
   },
     created() {
     // load the preferences
-    fetch("https://localhost:44392/api/GetAllPrefs" )
+    fetch("https://localhost:44392/api/test/${userID}")
       .then((response) => {
         return response.json();
             })
