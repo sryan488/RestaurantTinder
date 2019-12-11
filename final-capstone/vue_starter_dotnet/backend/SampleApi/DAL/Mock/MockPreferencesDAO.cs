@@ -14,7 +14,7 @@ namespace SampleApi.DAL
             {
                 UserID = 1,
                 Categories = new List<string>() { "French", "Seafood" },
-                PriceRange = new List<int>() { 3, 4 },
+                PriceRange = 3,
                 City = "Paris",
                 SearchRadius = 25
             },
@@ -22,7 +22,7 @@ namespace SampleApi.DAL
             {
                 UserID = 2,
                 Categories = new List<string>() { "Italian", "Pizza" },
-                PriceRange = new List<int>() { 1, 2, 3 },
+                PriceRange = 3,
                 City = "Cleveland",
                 SearchRadius = 10
             },
@@ -30,7 +30,7 @@ namespace SampleApi.DAL
             {
                 UserID = 3,
                 Categories = new List<string>() { "Chinese", "Takeout" },
-                PriceRange = new List<int>() { 1 },
+                PriceRange =  1,
                 City = "Chicago",
                 SearchRadius = 50
             }

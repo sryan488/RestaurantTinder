@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SampleApi.DAL;
 using SampleApi.DAL.Interfaces;
 using SampleApi.Models;
+using SampleApi.Providers.Security;
 
 namespace SampleApi.Controllers
 {
@@ -15,33 +17,43 @@ namespace SampleApi.Controllers
     [ApiController]
     public class VueApiTestController : ControllerBase
     {
-        IPreferencesDAO DAO;
-        public VueApiTestController(IPreferencesDAO dao)
+        private IPreferencesDAO prefDAO;
+        private IUserDAO userDAO;
+        private IPasswordHasher passwordHasher;
+
+        public VueApiTestController(IPreferencesDAO dao, IUserDAO userDao, IPasswordHasher passwordHasher)
         {
-            DAO = dao;
+            this.prefDAO = dao;
+            this.userDAO = userDao;
+            this.passwordHasher = passwordHasher;
         }
 
         [HttpGet]
         public List<Preferences> GetAllPreferences()
         {
-            return DAO.GetAllPrefs();
+            return prefDAO.GetAllPrefs();
         }
 
         [HttpGet("{id}")]
         public Preferences GetUserPreferences(int id)
         {
-            return DAO.GetUserPrefs(id);
+            return prefDAO.GetUserPrefs(id);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update(int id, Preferences newPrefs)
         {
-            if (DAO.GetUserPrefs(id) == null)
+            if (prefDAO.GetUserPrefs(id) == null)
             {
                 return NotFound();
             }
-            DAO.SetUserPrefs(id, newPrefs);
+            prefDAO.SetUserPrefs(id, newPrefs);
             return NoContent();
+        }
+
+        private int GetCurrentUserId()
+        {
+            return userDAO.GetUser(base.User.Identity.Name).Id;
         }
     }
 }
