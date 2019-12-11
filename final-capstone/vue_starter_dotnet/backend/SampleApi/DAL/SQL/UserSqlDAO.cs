@@ -61,25 +61,47 @@ namespace SampleApi.DAL
         /// <param name="user"></param>
         public void CreateUser(User user)
         {
+            int newUserID;
+            // Create a new row in the user sql table
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role); select @@IDENTITY", conn);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);
 
-                    cmd.ExecuteNonQuery();
-
-                    return;
+                    newUserID = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
             catch (SqlException ex)
             {
                 throw ex;
+            }
+
+            // If user successfully created, add a row to the preferences table with the new user's ID and blank preferences
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Preferences (cuisine, price_range, city, search_radius) VALUES (@cuisine, @price_range, @city, @search_radius) WHERE userId = @ui;", conn);
+                    cmd.Parameters.AddWithValue("@cuisine", "");
+                    cmd.Parameters.AddWithValue("@price_range", 0);
+                    cmd.Parameters.AddWithValue("@city", "");
+                    cmd.Parameters.AddWithValue("@search_radius", 0);
+
+                    cmd.Parameters.AddWithValue("@ui", newUserID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                throw e;
             }
         }
         /// <summary>
