@@ -81,8 +81,10 @@ export default {
         return fetch(`https://localhost:44392/api/test/${this.userID}`, {
             method: 'PUT',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: 'Bearer ' + auth.getToken(),
             },
+            credentials: 'same-origin',
             body: JSON.stringify(this.form)
         })
         .then((response) => {
@@ -92,7 +94,12 @@ export default {
   },
     created() {
     // load the preferences
-    fetch(`https://localhost:44392/api/test/${this.userID}`)
+    fetch(`https://localhost:44392/api/test/${this.userID}`, {
+            headers: {
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
       .then((response) => {
         return response.json();
             })
