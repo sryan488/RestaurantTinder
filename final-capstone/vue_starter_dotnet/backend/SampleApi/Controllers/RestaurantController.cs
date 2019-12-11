@@ -16,7 +16,7 @@ namespace SampleApi.Controllers
     {
 
        private IRestaurantDAO Rdao;
-        private IUserDAO Udao;
+       private IUserDAO Udao;
 
         public RestaurantController(IRestaurantDAO Rdao, IUserDAO Udao)
         {
@@ -24,121 +24,23 @@ namespace SampleApi.Controllers
             this.Udao = Udao;
         }
 
-        /// <summary>
-        /// Returns list of restaurants for a customer
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [Route("api/GetFilteredRestaurants/{id}")]
-        [HttpGet("{username}", Name = "GetRestaurantsById")]
-        public ActionResult<List<Restaurant>> GetFilteredRestaurants(int iD)
+        public IRestResponse GetData()
         {
-            //User user = Udao.GetUser(username);
-            User user = new User()
-            {
-                Id = 12345,
-                Username = "sam1776",
-            };
+            var client = new RestClient("https://api.yelp.com/v3/businesses/search?location=lyndhurst%20oh&radius=2000&categories=pizza,mexican&price=1,2,3");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("Connection", "keep-alive");
+            request.AddHeader("Accept-Encoding", "gzip, deflate");
+            request.AddHeader("Host", "api.yelp.com");
+            request.AddHeader("Postman-Token", "5d284b5b-a64a-41d0-98df-313efc0cb9cc,94fe6714-6483-43e7-a727-9bf30cda8b0c");
+            request.AddHeader("Cache-Control", "no-cache");
+            request.AddHeader("Accept", "*/*");
+            request.AddHeader("User-Agent", "PostmanRuntime/7.20.1");
+            request.AddHeader("Authorization", "Bearer VESkUp-nJuneNqJhU6yLt7nGSYN29do8SXv9GNJ-Dbvp-qSd5kShcFZZFYJEUvqMWMLXcV6sz1SK21vU_yQMXMoSSLnCARVqC0O_f28r91H9YVf01169JkFVmI3uXXYx");
+            IRestResponse response = client.Execute(request);
 
-            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(iD);
-
-            // Return 200 OK
-            return Ok(restaurants);
+            return response;
         }
 
-        ///// <summary>
-        ///// Filter by cusine 
-        ///// </summary>
-        ///// <param name="cuisine"></param>
-        ///// <returns></returns>
-        //[Route("api/User/{id}")]
-        //[HttpGet("{cuisine}", Name = "GetRestaurantsByCusine")]
-        //public ActionResult<List<Restaurant>> GetFilteredRestaurantsByCusine(string cuisine)
-        //{
-        //    //User user = Udao.GetUser(username);
-        //    User user = new User()
-        //    {
-        //        Id = 12345,
-        //        Username = "sam1776",
-        //    };
-        //    //Preferences pref = Udao.GetPreferences(user);
-        //    List<Restaurant> restaurants = Rdao.GetFilteredRestaurantsByCuisine(cuisine);
-
-        //    // Return 200 OK
-        //    return Ok(restaurants);
-        //}
-
-
-        ///// <summary>
-        ///// Filter by Restaurant Id
-        ///// </summary>
-        ///// <param name="iD"></param>
-        ///// <returns></returns>
-        //[Route("api/Restaurant/{iD}")]
-        //[HttpGet("{iD}", Name = "GetFilteredRestaurantsById")]
-        //public ActionResult<Restaurant> GetFilteredRestaurantsById(int iD)
-        //{
-
-
-        //    Restaurant restaurants = Rdao.GetSpecificRestaurants(iD);
-
-        //    // Return 200 OK
-        //    return Ok(restaurants);
-        //}
-
-        ///// <summary>
-        ///// Remove from blacklist, whitelist
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpDelete("{id}")]
-        //public ActionResult Delete(int id)
-        //{
-        //    var restToRemove = Rdao.GetSpecificRestaurants(id);
-
-        //    if (restToRemove == null)
-        //    {
-        //        // return HTTP 404
-        //        return NotFound();
-        //    }
-
-        //    // delete the resource
-        //    //Udao.RemoveFavorite(id);
-
-        //    // return HTTP 201
-        //    return NoContent();
-        //}
-
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="restaurant"></param>
-        ///// <param name="user"></param>
-        ///// <param name="favOrBlack"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public ActionResult<AddRestaurantToListVM> AddRestaurantToList([FromBody]AddRestaurantToListVM aRTLVM)
-        //{
-            
-        //    User user = aRTLVM.User;
-        //    Restaurant restaurant = aRTLVM.Restaurant;
-        //    // Save in the dao
-        //    if (aRTLVM.favOrBlack)
-        //    {
-        //        //Udao.AddFavorite(user, restaurant);
-        //    }
-        //    else
-        //    {
-        //        //Udao.AddBlacklist(user, restaurant);
-        //    }
-            
-
-        //    // Return 201 (with a location header: https://localhost:44359/api/reviews/{id})
-        //    // First parameter - Name of the route to generate for API
-        //    // Second parameter - The variables for the route
-        //    // Third parameter - The response body
-        //    return CreatedAtRoute("AddRestaurantToList", new { id = aRTLVM.Id }, aRTLVM);
-        //}
     }
 }
