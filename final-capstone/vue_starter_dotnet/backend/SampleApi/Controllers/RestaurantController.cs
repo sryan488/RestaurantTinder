@@ -28,28 +28,30 @@ namespace SampleApi.Controllers
         /// Returns list of restaurants for a customer
         /// </summary>
         /// <returns></returns>
-        //[HttpGet("{username}", Name = "GetRestaurantsById2")]
-        //public ActionResult<List<Restaurant>> GetFilteredRestaurants(int userId)
-        //{
-        //    //User user = Udao.GetUser(username);
-        //    User user = new User()
-        //    {
-        //        Id = 12345,
-        //        Username = "sam1776",
-        //    };
-        //    Preferences pref = Udao.GetPreferences(user);
-        //    List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(pref);
+        /// 
+        [Route("api/User/{username}")]
+        [HttpGet("{username}", Name = "GetRestaurantsById2")]
+        public ActionResult<List<Restaurant>> GetFilteredRestaurants(string username)
+        {
+            //User user = Udao.GetUser(username);
+            User user = new User()
+            {
+                Id = 12345,
+                Username = "sam1776",
+            };
+            Preferences pref = Udao.
+            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(pref);
 
-        //    // Return 200 OK
-        //    return Ok(restaurants);
-        //}
+            // Return 200 OK
+            return Ok(restaurants);
+        }
 
         /// <summary>
         /// Filter by cusine 
         /// </summary>
         /// <param name="cuisine"></param>
         /// <returns></returns>
-        [Route("api/User/cuisine")]
+        [Route("api/User/{id}")]
         [HttpGet("{cuisine}", Name = "GetRestaurantsByCusine")]
         public ActionResult<List<Restaurant>> GetFilteredRestaurantsByCusine(string cuisine)
         {
@@ -72,7 +74,7 @@ namespace SampleApi.Controllers
         /// </summary>
         /// <param name="iD"></param>
         /// <returns></returns>
-        [Route("api/Restaurant/")]
+        [Route("api/Restaurant/{iD}")]
         [HttpGet("{iD}", Name = "GetFilteredRestaurantsById")]
         public ActionResult<Restaurant> GetFilteredRestaurantsById(int iD)
         {
