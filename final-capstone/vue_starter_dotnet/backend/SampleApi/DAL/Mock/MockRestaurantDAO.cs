@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SampleApi.DAL.Interfaces;
 using SampleApi.Models;
 
 namespace SampleApi.DAL
@@ -10,11 +11,11 @@ namespace SampleApi.DAL
     {
         string connString;
         List<Restaurant> restaurants;
-        private IUserDAO Udao;
+        private IPreferencesDAO Pdao;
 
-        public MockRestaurantDAO(IUserDAO Udao)
+        public MockRestaurantDAO(IPreferencesDAO Pdao)
         {
-            this.Udao = Udao;
+            this.Pdao = Pdao;
         }
 
         public MockRestaurantDAO(string connString)
@@ -66,7 +67,8 @@ namespace SampleApi.DAL
 
         public List<Restaurant> GetFilteredRestaurants(int iD)
         {
-            Udao.
+            IList<Preferences> pref = Pdao.GetAllPrefs();
+            //IList<Restaurant>
             return restaurants;
         }
 
