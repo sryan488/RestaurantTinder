@@ -57,7 +57,7 @@ namespace SampleApi.DAL
 
         }
 
-        public List<Restaurant> GetFilteredRestaurants(Preferences prefs)
+        public List<Restaurant> GetFilteredRestaurants(string userName)
         {
             return restaurants;
         }

@@ -89,6 +89,7 @@ namespace SampleApi
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
             services.AddSingleton<IPreferencesDAO>(m => new PreferencesSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
             services.AddSingleton<IUserSavedListsDAO>(m => new UserSavedListsSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
+            services.AddSingleton<IRestaurantDAO>(m => new MockRestaurantDAO(Configuration.GetConnectionString("Local_SQL_Server")));
             //TODO: Add restaurant DAO
             #endregion
 
