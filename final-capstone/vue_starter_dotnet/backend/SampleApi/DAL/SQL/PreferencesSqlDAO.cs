@@ -88,7 +88,9 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Preferences (cuisine, price_range, city, search_radius) VALUES (@cuisine, @price_range, @city, @search_radius) WHERE userId = @ui;", conn);
+                    SqlCommand cmd = new SqlCommand(@"UPDATE preferences
+                                                      SET category = @cuisine, price = @price_range, city = @city, distance = @search_radius
+                                                      WHERE userId = @ui;", conn);
                     cmd.Parameters.AddWithValue("@cuisine", preferences.Categories);
                     cmd.Parameters.AddWithValue("@price_range", preferences.PriceRange);
                     cmd.Parameters.AddWithValue("@city", preferences.City);
