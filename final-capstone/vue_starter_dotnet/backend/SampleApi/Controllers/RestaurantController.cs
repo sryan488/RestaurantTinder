@@ -28,7 +28,7 @@ namespace SampleApi.Controllers
         /// Returns list of restaurants for a customer
         /// </summary>
         /// <returns></returns>
-        //[HttpGet("{username}", Name = "GetRestaurantsById")]
+        //[HttpGet("{username}", Name = "GetRestaurantsById2")]
         //public ActionResult<List<Restaurant>> GetFilteredRestaurants(int userId)
         //{
         //    //User user = Udao.GetUser(username);
@@ -66,6 +66,23 @@ namespace SampleApi.Controllers
             return Ok(restaurants);
         }
 
+
+        /// <summary>
+        /// Filter by Restaurant Id
+        /// </summary>
+        /// <param name="iD"></param>
+        /// <returns></returns>
+        [Route("api/Restaurant/")]
+        [HttpGet("{iD}", Name = "GetFilteredRestaurantsById")]
+        public ActionResult<Restaurant> GetFilteredRestaurantsById(int iD)
+        {
+
+
+            Restaurant restaurants = Rdao.GetSpecificRestaurants(iD);
+
+            // Return 200 OK
+            return Ok(restaurants);
+        }
 
         /// <summary>
         /// Remove from blacklist, whitelist
