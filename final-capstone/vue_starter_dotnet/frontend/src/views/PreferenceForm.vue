@@ -1,9 +1,9 @@
 <template>
     <div>
         <h1> SAVED PREFERENCES </h1>
-        <div >
-
-        </div>
+            <p>
+                Preferences: {{preferences.categories}}
+            </p>
     <h1> FILL OUT THIS FORM </h1>
         <form id="prefForm" v-on:submit.prevent="submitPreferences" >
             <div>
@@ -53,12 +53,7 @@ export default {
   name: 'preferencesForm',
   data() {
       return {
-            preferences: {
-                cuisine: "",
-                priceRange: 0,
-                city: "",
-                searchRadius: 0
-            },
+            preferences: [],
             form: {
                 userID: 2,
                 cuisine: [],
@@ -85,18 +80,16 @@ export default {
   },
     created() {
     // load the preferences
-    fetch("https://localhost:44392/api/values")
+    fetch("https://localhost:44392/api/GetAllPrefs" )
       .then((response) => {
         return response.json();
-      })
-      .then((preferences) => {
-        this.preferences = preferences;
-      })
-      .catch((err) => console.error(err));
+            })
+            .then((preferences) => {
+                this.preferences = preferences;
+                })
+                .catch((err) => console.error(err));
   }
 }
-  
-
 </script>
 
 <style scoped>

@@ -56,7 +56,7 @@ namespace SampleApi.Providers.Security
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(480),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/account/register`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -68,7 +68,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-            this.$router.push({ path: '/login', query: { registration: 'success' } });
+            this.$router.push({ path: '/account/login', query: { registration: 'success' } });
           } else {
             this.registrationErrors = true;
           }
