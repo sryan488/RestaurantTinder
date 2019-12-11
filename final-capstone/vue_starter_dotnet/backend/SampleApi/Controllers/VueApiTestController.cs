@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SampleApi.DAL;
+using SampleApi.DAL.Interfaces;
 using SampleApi.Models;
 
 namespace SampleApi.Controllers
@@ -14,24 +15,28 @@ namespace SampleApi.Controllers
     [ApiController]
     public class VueApiTestController : ControllerBase
     {
-        MockPreferencesDAO DAO = new MockPreferencesDAO();
+        IPreferencesDAO DAO;
+        public VueApiTestController(IPreferencesDAO dao)
+        {
+            DAO = dao;
+        }
 
         [HttpGet]
-        public List<Preferences> GetAllPrefs()
+        public List<Preferences> GetAllPreferences()
         {
-            return DAO.GetAllPreferences();
+            return DAO.GetAllPrefs();
         }
 
         [HttpGet("{id}")]
-        public Preferences GetUserPrefs(int id)
+        public Preferences GetUserPreferences(int id)
         {
-            return DAO.GetPrefsOfUser(id);
+            return DAO.GetUserPrefs(id);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update(int id, Preferences newPrefs)
         {
-            if (DAO.GetPrefsOfUser(id) == null)
+            if (DAO.GetUserPrefs(id) == null)
             {
                 return NotFound();
             }
