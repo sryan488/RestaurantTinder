@@ -19,16 +19,16 @@
     <h1> FILL OUT THIS FORM </h1>
         <form id="prefForm" v-on:submit.prevent="submitPreferences" >
             <div>
-                <h2> Cuisine </h2>
+                <h2> categories </h2>
                     <label for=italian>Italian </label>
-                        <input type="checkbox" name="cuisine" value="Italian" v-model="form.cuisine" :checked="form.cuisine.includes('Italian')">
-                    <label for=cuisine>Chinese </label>
-                        <input type="checkbox" name="cuisine" value="Chinese" v-model="form.cuisine" :checked="form.cuisine.includes('Chinese')">
-                    <label for=cuisine>Mexican </label>
-                        <input type="checkbox" name="cuisine" value="Mexican" v-model="form.cuisine" :checked="form.cuisine.includes('Mexican')">
-                    <label for=cuisine>American </label>
-                        <input type="checkbox" name="cuisine" value="American" v-model="form.cuisine" :checked="form.cuisine.includes('American')">
-                        <p> Chosen cuisine: {{form.cuisine}} </P>
+                        <input type="checkbox" name="categories" value="Italian" v-model="form.categories" :checked="form.categories.includes('Italian')">
+                    <label for=categories>Chinese </label>
+                        <input type="checkbox" name="categories" value="Chinese" v-model="form.categories" :checked="form.categories.includes('Chinese')">
+                    <label for=categories>Mexican </label>
+                        <input type="checkbox" name="categories" value="Mexican" v-model="form.categories" :checked="form.categories.includes('Mexican')">
+                    <label for=categories>American </label>
+                        <input type="checkbox" name="categories" value="American" v-model="form.categories" :checked="form.categories.includes('American')">
+                        <p> Chosen categories: {{form.categories}} </P>
                 <h2> Price Range </h2>
                     <label for=$>$ </label>
                         <input type="radio" name="priceRange" value="1" v-model="form.priceRange" :checked="form.priceRange == 1">
@@ -68,8 +68,7 @@ export default {
             userID: 2,
             preference: {},
             form: {
-                userID: 0,
-                cuisine: [],
+                categories: [],
                 priceRange: 0,
                 city: "",
                 searchRadius: 0
