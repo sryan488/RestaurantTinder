@@ -29,9 +29,9 @@ namespace SampleApi.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Route("api/User/{username}")]
-        [HttpGet("{username}", Name = "GetRestaurantsById2")]
-        public ActionResult<List<Restaurant>> GetFilteredRestaurants(string userName)
+        [Route("api/GetFilteredRestaurants/{id}")]
+        [HttpGet("{username}", Name = "GetRestaurantsById")]
+        public ActionResult<List<Restaurant>> GetFilteredRestaurants(int iD)
         {
             //User user = Udao.GetUser(username);
             User user = new User()
@@ -40,7 +40,7 @@ namespace SampleApi.Controllers
                 Username = "sam1776",
             };
 
-            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(userName);
+            List<Restaurant> restaurants = Rdao.GetFilteredRestaurants(iD);
 
             // Return 200 OK
             return Ok(restaurants);

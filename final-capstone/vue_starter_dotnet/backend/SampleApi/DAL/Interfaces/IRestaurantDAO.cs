@@ -13,7 +13,7 @@ namespace SampleApi.DAL
         /// </summary>
         /// <param name="prefs">An object containing the user's preference settings from login.</param>
         /// <returns></returns>
-        List<Restaurant> GetFilteredRestaurants(string userName);
+        List<Restaurant> GetFilteredRestaurants(int iD);
 
         /// <summary>
         /// Given a list of restaurant ids, returns all their info from the API.
