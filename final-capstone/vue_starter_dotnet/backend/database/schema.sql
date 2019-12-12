@@ -45,15 +45,15 @@ CREATE TABLE Blacklist
 	restaurant_id varchar(75) not null,
 );
 
-
+drop table preferences
 CREATE TABLE Preferences
 (
 	id int,
 	users_id int not null,
-	city varchar(50) not null,
-	cuisine varchar(max) not null,
-	price int not null,
-	distance float not null
+	"location" varchar(50) not null,
+	categories varchar(max) not null,
+	price varchar not null,
+	radius float not null
 );
 
 COMMIT TRANSACTION;
