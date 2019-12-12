@@ -89,6 +89,9 @@ export default {
         .then((response) => {
         return response.json();
           });
+      },
+      logOut(){
+          localStorage.clear();
       }
   },
     created() {
