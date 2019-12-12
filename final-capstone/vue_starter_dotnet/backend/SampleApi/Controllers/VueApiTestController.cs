@@ -47,7 +47,7 @@ namespace SampleApi.Controllers
             int id = GetCurrentUserId();
             if (prefDAO.GetUserPrefs(id) == null)
             {
-                return NotFound();
+                return NotFound(); 
             }
             prefDAO.SetUserPrefs(id, newPrefs);
             return NoContent();
