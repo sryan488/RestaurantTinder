@@ -29,18 +29,20 @@ CREATE TABLE users
 	constraint pk_users primary key (id)
 );
 
+DROP TABLE Favorites
+DROP TABLE Blacklist
 
 CREATE TABLE Favorites
 (
 	users_id	int not null,
-	restaurant_id int not null,
+	restaurant_id varchar(75) not null,
 );
 
 
 CREATE TABLE Blacklist
 (
 	users_id	int not null,
-	restaurant_id int not null,
+	restaurant_id varchar(75) not null,
 );
 
 
