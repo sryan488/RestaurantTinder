@@ -20,11 +20,13 @@ namespace SampleApi.Controllers
         private IPreferencesDAO prefDAO;
         private IUserDAO userDAO;
         private IPasswordHasher passwordHasher;
+        private IRestaurantDAO yelpDAO;
 
-        public VueApiTestController(IPreferencesDAO dao, IUserDAO userDao, IPasswordHasher passwordHasher)
+        public VueApiTestController(IPreferencesDAO dao, IUserDAO userDao, IPasswordHasher passwordHasher, IRestaurantDAO yelpDAO)
         {
             this.prefDAO = dao;
             this.userDAO = userDao;
+            this.yelpDAO = yelpDAO;
             this.passwordHasher = passwordHasher;
         }
 
@@ -51,6 +53,16 @@ namespace SampleApi.Controllers
             }
             prefDAO.SetUserPrefs(id, newPrefs);
             return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public List<Restaurant> GetRestaurants(int id) // placeholder, may need diff controller
+        {
+            int user_id = GetCurrentUserId();
+            Preferences prefs = prefDAO.GetUserPrefs(user_id);
+
+            // Perform the search and return the results as json
+            return yelpDAO.GetRestaurants(prefs);
         }
 
         private int GetCurrentUserId()

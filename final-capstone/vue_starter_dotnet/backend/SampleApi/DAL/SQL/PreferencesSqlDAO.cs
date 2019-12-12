@@ -34,7 +34,7 @@ namespace SampleApi.DAL.SQL
                             UserID = Convert.ToInt32(data["users_id"]),
                             Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
                             //PriceRange = DeserializePrices(Convert.ToString(data["price"])),
-                            City = Convert.ToString(data["city"]),
+                            Location = Convert.ToString(data["city"]),
                             SearchRadius = Convert.ToDouble(data["distance"])
                         };
                         results.Add(pref);
@@ -66,7 +66,7 @@ namespace SampleApi.DAL.SQL
                             UserID = Convert.ToInt32(data["users_id"]),
                             Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
                             PriceRange = Convert.ToInt32(data["price"]),
-                            City = Convert.ToString(data["city"]),
+                            Location = Convert.ToString(data["city"]),
                             SearchRadius = Convert.ToDouble(data["distance"])
                         };
                         return pref;
@@ -94,7 +94,7 @@ namespace SampleApi.DAL.SQL
                                                       WHERE users_id = @ui;", conn);
                     cmd.Parameters.AddWithValue("@cuisine", categoryString);
                     cmd.Parameters.AddWithValue("@price_range", preferences.PriceRange);
-                    cmd.Parameters.AddWithValue("@city", preferences.City);
+                    cmd.Parameters.AddWithValue("@city", preferences.Location);
                     cmd.Parameters.AddWithValue("@search_radius", preferences.SearchRadius);
                     cmd.Parameters.AddWithValue("@ui", userID);
 

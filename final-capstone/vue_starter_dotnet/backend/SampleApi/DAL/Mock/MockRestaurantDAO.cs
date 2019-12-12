@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SampleApi.DAL.Interfaces;
 using SampleApi.Models;
+using Yelp.Api.Models;
 
 namespace SampleApi.DAL
 {
@@ -65,7 +66,7 @@ namespace SampleApi.DAL
 
         }
 
-        public List<Restaurant> GetFilteredRestaurants(int iD)
+        public List<Restaurant> GetRestaurants(int iD)
         {
             IList<Preferences> pref = Pdao.GetAllPrefs();
             //IList<Restaurant>
@@ -88,6 +89,11 @@ namespace SampleApi.DAL
             }
 
             return output;
+        }
+
+        Task<SearchResponse> IRestaurantDAO.Search(Dictionary<string, string> searchParameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }
