@@ -102,7 +102,7 @@ namespace SampleApi.DAL
             {
                 Categories = new List<string>() {"Shushi", "Za", "Sandos"},
                 PriceRange = 1,
-                City = "Cleveland",
+                Location = "Cleveland",
                 SearchRadius = 5
             };
             return pref;

@@ -32,7 +32,7 @@ namespace SampleApi.DAL.SQL
                     {
                         Restaurant restaurant = new Restaurant()
                         {
-                            RestaurantID = Convert.ToInt32(data["restaurant_id"])
+                            RestaurantID = Convert.ToString(data["restaurant_id"])
                             // TODO: get rest of restaurant information from API
                         };
                         results.Add(restaurant);

@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using SampleApi.DAL;
 using SampleApi.DAL.Interfaces;
 using SampleApi.DAL.SQL;
+using SampleApi.DAL.YelpAPI;
 using SampleApi.Models;
 using SampleApi.Providers.Security;
 
@@ -89,8 +90,9 @@ namespace SampleApi
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
             services.AddSingleton<IPreferencesDAO>(m => new PreferencesSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
             services.AddSingleton<IUserSavedListsDAO>(m => new UserSavedListsSqlDAO(Configuration.GetConnectionString("Local_SQL_Server")));
-            services.AddSingleton<IRestaurantDAO>(m => new MockRestaurantDAO(Configuration.GetConnectionString("Local_SQL_Server")));
-            //TODO: Add restaurant DAO
+            services.AddSingleton<IRestaurantDAO>(m => new RestaurantApiDAO(
+                "VESkUp-nJuneNqJhU6yLt7nGSYN29do8SXv9GNJ-Dbvp-qSd5kShcFZZFYJEUvqMWMLXcV6sz1SK21vU_yQMXMoSSLnCARVqC0O_f28r91H9YVf01169JkFVmI3uXXYx"
+                )); // AFrankel's API key
             #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
