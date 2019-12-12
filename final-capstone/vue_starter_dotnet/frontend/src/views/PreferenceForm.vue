@@ -90,9 +90,6 @@ export default {
         .then((response) => {
         return response.json();
           });
-      },
-      logOut(){
-          localStorage.clear();
       }
   },
     created() {
@@ -109,6 +106,10 @@ export default {
             })
             .then((preference) => {
                 this.preference = preference;
+                this.form.categories = preference.categories;
+                this.form.priceRange = preference.priceRange;
+                this.form.city = preference.city;
+                this.form.searchRadius = preference.searchRadius;
                 })
                 .catch((err) => console.error(err));
   }
