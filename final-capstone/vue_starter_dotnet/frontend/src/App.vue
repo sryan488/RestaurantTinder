@@ -9,16 +9,13 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <router-link to="/" class="nav-link">Home </router-link></a>
       </li>
       <li class="nav-item">
         <router-link to="/preferenceForm" class="nav-link">Preferences </router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <router-link to="/results" class="nav-link">Results </router-link>
       </li>
     </ul>
     
@@ -43,11 +40,7 @@
           <div class="card-header">Welcome <i class="fas fa-key"></i></div>
           <div class="card-body">
             <p class="card-text"><router-view/></p>
-            <p>
-              <router-link to="/">Home </router-link>
-      <router-link to="/preferenceForm">Preferences </router-link>
-      <router-link to="/results">Results </router-link>
-      </p>
+           
           </div>
           <div class="col-lg-4">
           </div>
