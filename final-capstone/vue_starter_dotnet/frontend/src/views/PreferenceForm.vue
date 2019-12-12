@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import auth from '../auth';
 export default {
   name: 'preferencesForm',
   data() {
@@ -87,14 +88,18 @@ export default {
             body: JSON.stringify(this.form)
         })
         .then((response) => {
-        return response.json();
-          });
+            return response.json();
+            })
+        .then((response) => {
+            // return 
+            });
       }
   },
     created() {
     // load the preferences
     fetch(`https://localhost:44392/api/test`, {
             headers: {
+            "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),
             },
             credentials: 'same-origin',

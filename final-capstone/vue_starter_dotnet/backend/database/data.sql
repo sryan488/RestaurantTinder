@@ -10,11 +10,6 @@ INSERT INTO users
 VALUES
   ('user', 'jUE98uhvS5tdIlxRsmz1W7/Qaqo=', '9CWPUTvXqQ4=', 'User');
 
-COMMIT TRANSACTION;
-
-
-BEGIN TRANSACTION;
-
 INSERT INTO users
   (username,password,salt,role)
 VALUES
@@ -64,3 +59,5 @@ VALUES
 SELECT * FROM preferences
 
 SELECT * FROM users
+
+COMMIT TRANSACTION
