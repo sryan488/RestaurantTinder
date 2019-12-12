@@ -89,7 +89,9 @@ export default {
         })
         .then((response) => {
         return response.json();
-          });
+          })
+            .then(this.$router.push('/results'));
+
       }
   },
     created() {
