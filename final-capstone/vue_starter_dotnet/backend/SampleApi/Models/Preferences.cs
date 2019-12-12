@@ -13,7 +13,7 @@ namespace SampleApi.Models
 
         public int PriceRange { get; set; }
 
-        public string City { get; set; }
+        public string Location { get; set; }
 
         public double SearchRadius { get; set; } // distance in miles
 

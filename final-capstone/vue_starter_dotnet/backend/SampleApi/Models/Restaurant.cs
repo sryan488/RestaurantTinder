@@ -30,7 +30,7 @@ namespace SampleApi.Models
         /// <summary>
         /// The restaurant id.
         /// </summary>
-        public int RestaurantID { get; set; }
+        public string RestaurantID { get; set; }
 
         /// <summary>
         /// The name of the restaurant.
