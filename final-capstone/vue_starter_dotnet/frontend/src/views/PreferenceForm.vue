@@ -9,7 +9,7 @@
                 Preferences: {{preference.categories}}
             </p>
             <p>
-                City: {{preference.city}}
+                Location: {{preference.location}}
             </p>
             <p>
                 Price Range: {{preference.priceRange}}
@@ -41,9 +41,9 @@
                         <p> Chosen price range: {{form.priceRange}} </P>
 
                 <h2> Location </h2>
-                    <label for=city>City: </label>
-                        <input type="text" name="city" v-model="form.city">
-                        <p> Chosen location: {{form.city}} </P>
+                    <label for=location>Location: </label>
+                        <input type="text" name="location" v-model="form.location">
+                        <p> Chosen location: {{form.location}} </P>
                 <h2> Distance 
                     <select v-model="form.searchRadius">
                         <option value="5" name="searchRadius" >5 mi</option>
@@ -70,7 +70,7 @@ export default {
             form: {
                 categories: [],
                 priceRange: 0,
-                city: "",
+                location: "",
                 searchRadius: 0
             }
       }
@@ -110,7 +110,7 @@ export default {
                 this.preference = preference;
                 this.form.categories = preference.categories;
                 this.form.priceRange = preference.priceRange;
-                this.form.city = preference.city;
+                this.form.location = preference.location;
                 this.form.searchRadius = preference.searchRadius;
                 })
                 .catch((err) => console.error(err));
