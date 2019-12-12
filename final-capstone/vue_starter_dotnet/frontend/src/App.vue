@@ -12,7 +12,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <router-link to="/preferenceForm" class="nav-link">Preferences </router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
@@ -43,6 +43,11 @@
           <div class="card-header">Welcome <i class="fas fa-key"></i></div>
           <div class="card-body">
             <p class="card-text"><router-view/></p>
+            <p>
+              <router-link to="/">Home </router-link>
+      <router-link to="/preferenceForm">Preferences </router-link>
+      <router-link to="/results">Results </router-link>
+      </p>
           </div>
           <div class="col-lg-4">
           </div>

@@ -64,10 +64,10 @@ namespace SampleApi.DAL.SQL
                         Preferences pref = new Preferences()
                         {
                             UserID = Convert.ToInt32(data["users_id"]),
-                            Categories = DeserializeCategories(Convert.ToString(data["cuisine"])),
+                            Categories = DeserializeCategories(Convert.ToString(data["categories"])),
                             PriceRange = Convert.ToInt32(data["price"]),
-                            Location = Convert.ToString(data["city"]),
-                            SearchRadius = Convert.ToDouble(data["distance"])
+                            Location = Convert.ToString(data["location"]),
+                            SearchRadius = Convert.ToDouble(data["radius"])
                         };
                         return pref;
                     }
@@ -90,12 +90,12 @@ namespace SampleApi.DAL.SQL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"UPDATE preferences
-                                                      SET cuisine = @cuisine, price = @price_range, city = @city, distance = @search_radius
+                                                      SET categories = @categories, price = @price_range, location = @location, radius = @radius
                                                       WHERE users_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@cuisine", categoryString);
+                    cmd.Parameters.AddWithValue("@categories", categoryString);
                     cmd.Parameters.AddWithValue("@price_range", preferences.PriceRange);
-                    cmd.Parameters.AddWithValue("@city", preferences.Location);
-                    cmd.Parameters.AddWithValue("@search_radius", preferences.SearchRadius);
+                    cmd.Parameters.AddWithValue("@location", preferences.Location);
+                    cmd.Parameters.AddWithValue("@radius", preferences.SearchRadius);
                     cmd.Parameters.AddWithValue("@ui", userID);
 
                     cmd.ExecuteNonQuery();
