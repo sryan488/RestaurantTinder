@@ -48,9 +48,9 @@
                     <select v-model="form.searchRadius">
                         <option value="5" name="searchRadius" >5 mi</option>
                         <option value="10" name="searchRadius">10 mi</option>
+                        <option value="15" name="searchRadius">15 mi</option>
+                        <option value="20" name="searchRadius">20 mi</option>
                         <option value="25" name="searchRadius">25 mi</option>
-                        <option value="50" name="searchRadius">50 mi</option>
-                        <option value="100" name="searchRadius">100 mi</option>
                     </select>
                         <p> Chosen distance: {{form.searchRadius}}</P>
                 </h2>
