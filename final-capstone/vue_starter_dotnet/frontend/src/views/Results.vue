@@ -1,22 +1,23 @@
 <template>
-    <div>
-
- <Vue2InteractDraggable
-  @draggedLeft="draggedLeft"
-  :interact-event-bus-events="interactEventBusEvents"
-  v-if="isShowing"
-  class="card">
   <div>
-    <h3 class="cardTitle"><p>results</p>Drag me!</h3>
+      <div v-for="restaurant in restaurants" v-bind:key="restaurant">
+    <Vue2InteractDraggable
+      @draggedLeft="draggedLeft"
+      :interact-event-bus-events="interactEventBusEvents"
+      v-if="isShowing"
+      class="card">
+  <div>
+    <h3 class="cardTitle"><p>NAME: {{restaurant.name}}</p>Drag me!</h3>
   </div>
  </Vue2InteractDraggable>
 
  <BaseButton @click="dragLeft" label="⇦" />
-
+      </div>
     </div>
 </template>
 
 <script>
+import auth from '../auth';
 import { Vue2InteractDraggable, InteractEventBus } from 'vue2-interact'
 const INTERACT_DRAGGED_LEFT = 'INTERACT_DRAGGED_LEFT';
 
@@ -37,15 +38,10 @@ export default {
       InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
     },
   },
-  props: {
-    userID: Number
-  },
 
-  // Need to get the Id from the user model into the argument so we can call the GetRestaurants Action from the Spi/Test Controller
-  // This created method should load up the list of restaurants to display to the user when the results page is loaded.
       created() {
     // load the restaurants
-    fetch(`https://localhost:44392/api/test${this.userID}`, {
+    fetch(`https://localhost:44392/api/test/GetRestaurants`, {
             headers: {
             "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),
@@ -108,5 +104,8 @@ export default {
     width: 260px;
     top: 51.8%;
   }
+}
+.cardTitle {
+  color: black
 }
 </style>

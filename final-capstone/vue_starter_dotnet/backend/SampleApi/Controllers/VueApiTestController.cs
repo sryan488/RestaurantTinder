@@ -30,11 +30,6 @@ namespace SampleApi.Controllers
             this.passwordHasher = passwordHasher;
         }
 
-        //[HttpGet]
-        //public List<Preferences> GetAllPreferences()
-        //{
-        //    return prefDAO.GetAllPrefs();
-        //}
 
         [HttpGet]
         public Preferences GetUserPreferences()
@@ -55,8 +50,8 @@ namespace SampleApi.Controllers
             return NoContent();
         }
 
-        [HttpGet("{id}")]
-        public List<Restaurant> GetRestaurants(int id) // placeholder, may need diff controller
+        [HttpGet("GetRestaurants")]
+        public List<Restaurant> GetRestaurants() // placeholder, may need diff controllers
         {
             int user_id = GetCurrentUserId();
             Preferences prefs = prefDAO.GetUserPrefs(user_id);
