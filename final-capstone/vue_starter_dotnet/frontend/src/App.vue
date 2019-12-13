@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <router-link to="/" class="nav-link">Home </router-link></a>
+        <router-link to="/" class="nav-link">Home </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/preferenceForm" class="nav-link">Preferences </router-link>
