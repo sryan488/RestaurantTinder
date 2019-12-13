@@ -63,7 +63,7 @@
 <script>
 import auth from '../auth';
 export default {
-  name: 'preferencesForm',
+  name: 'preferenceForm',
   data() {
       return {
             preference: {},
@@ -90,7 +90,8 @@ export default {
         .then((response) => {
         return response.json();
           })
-            .then(this.$router.push('/results'));
+            .then(this.$router.push('/results'))
+            .then(this.$emit('user-id', this.preference.userID));
 
       }
   },
