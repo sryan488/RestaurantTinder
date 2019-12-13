@@ -28,6 +28,7 @@ export default {
       interactEventBusEvents: {
         draggedLeft: INTERACT_DRAGGED_LEFT,
       },
+      restaurants: []
     };
   },
 
@@ -35,7 +36,31 @@ export default {
     dragLeft() {
       InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
     },
+  },
+  props: {
+    userID: Number
+  },
+
+  // Need to get the Id from the user model into the argument so we can call the GetRestaurants Action from the Spi/Test Controller
+  // This created method should load up the list of restaurants to display to the user when the results page is loaded.
+      created() {
+    // load the restaurants
+    fetch(`https://localhost:44392/api/test${this.userID}`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+      .then((response) => {
+        return response.json();
+            })
+            .then((restaurants) => {
+                this.restaurants = restaurants;
+                })
+                .catch((err) => console.error(err));
   }
+
 };
 </script>
 
