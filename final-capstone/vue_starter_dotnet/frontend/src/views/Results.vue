@@ -1,22 +1,23 @@
 <template>
-    <div>
-
- <Vue2InteractDraggable
-  @draggedLeft="draggedLeft"
-  :interact-event-bus-events="interactEventBusEvents"
-  v-if="isShowing"
-  class="card">
   <div>
-    <h3 class="cardTitle"><p>results</p>Drag me!</h3>
+      <div v-for="restaurant in restaurants" v-bind:key="restaurant">
+    <Vue2InteractDraggable
+      @draggedLeft="draggedLeft"
+      :interact-event-bus-events="interactEventBusEvents"
+      v-if="isShowing"
+      class="card">
+  <div>
+    <h3 class="cardTitle"><p>NAME: {{restaurant.name}}</p>Drag me!</h3>
   </div>
  </Vue2InteractDraggable>
 
  <BaseButton @click="dragLeft" label="⇦" />
-
+      </div>
     </div>
 </template>
 
 <script>
+import auth from '../auth';
 import { Vue2InteractDraggable, InteractEventBus } from 'vue2-interact'
 const INTERACT_DRAGGED_LEFT = 'INTERACT_DRAGGED_LEFT';
 
@@ -28,6 +29,7 @@ export default {
       interactEventBusEvents: {
         draggedLeft: INTERACT_DRAGGED_LEFT,
       },
+      restaurants: []
     };
   },
 
@@ -35,7 +37,26 @@ export default {
     dragLeft() {
       InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
     },
+  },
+
+      created() {
+    // load the restaurants
+    fetch(`https://localhost:44392/api/test/GetRestaurants`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+      .then((response) => {
+        return response.json();
+            })
+            .then((restaurants) => {
+                this.restaurants = restaurants;
+                })
+                .catch((err) => console.error(err));
   }
+
 };
 </script>
 
@@ -83,5 +104,8 @@ export default {
     width: 260px;
     top: 51.8%;
   }
+}
+.cardTitle {
+  color: black
 }
 </style>
