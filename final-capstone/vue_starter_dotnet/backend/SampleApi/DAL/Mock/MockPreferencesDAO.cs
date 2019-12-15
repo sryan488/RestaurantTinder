@@ -13,7 +13,7 @@ namespace SampleApi.DAL
             new Preferences()
             {
                 UserID = 1,
-                Categories = new List<string>() { "French", "Seafood" },
+                SearchCategories = new List<string>() { "French", "Seafood" },
                 MaxPriceRange = 3,
                 Location = "Paris",
                 SearchRadius = 25
@@ -21,7 +21,7 @@ namespace SampleApi.DAL
             new Preferences()
             {
                 UserID = 2,
-                Categories = new List<string>() { "Italian", "Pizza" },
+                SearchCategories = new List<string>() { "Italian", "Pizza" },
                 MaxPriceRange = 3,
                 Location = "Cleveland",
                 SearchRadius = 10
@@ -29,7 +29,7 @@ namespace SampleApi.DAL
             new Preferences()
             {
                 UserID = 3,
-                Categories = new List<string>() { "Chinese", "Takeout" },
+                SearchCategories = new List<string>() { "Chinese", "Takeout" },
                 MaxPriceRange =  1,
                 Location = "Chicago",
                 SearchRadius = 50

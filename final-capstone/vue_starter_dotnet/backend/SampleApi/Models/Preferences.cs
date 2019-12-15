@@ -9,7 +9,9 @@ namespace SampleApi.Models
     {
         public int UserID { get; set; }
 
-        public List<string> Categories { get; set; }
+        public List<string> SearchCategories { get; set; }
+
+        public string SearchText { get; set; }
 
         public int MaxPriceRange { get; set; }
 

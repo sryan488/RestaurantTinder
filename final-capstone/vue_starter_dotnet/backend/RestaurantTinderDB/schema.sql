@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[preferences]
 (
     [users_id] INT NOT NULL, 
     [location] VARCHAR(50) NOT NULL, 
-    [categories] VARCHAR(MAX) NOT NULL, 
+    [search_text] VARCHAR(MAX) NOT NULL, 
     [price] VARCHAR(4) NOT NULL, 
     [radius] FLOAT NOT NULL, 
     PRIMARY KEY ([users_id]), 

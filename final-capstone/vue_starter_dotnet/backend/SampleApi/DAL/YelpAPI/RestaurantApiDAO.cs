@@ -21,6 +21,11 @@ namespace SampleApi.DAL.YelpAPI
             var task = Search(prefs);
             var results = task.Result.Businesses;
 
+            if (results is null)
+            {
+                throw new Exception("Search returned no results from the Yelp API.");
+            }
+
             List<Restaurant> restaurantList = new List<Restaurant>();
             foreach(BusinessResponse restaurant in results)
             {
@@ -57,7 +62,7 @@ namespace SampleApi.DAL.YelpAPI
             // Fill in the search parameters
             #region Search Parameters
             request.Location = prefs.Location;
-            request.Term = GetSearchCategoryString(prefs.Categories);
+            request.Term = GetSearchCategoryString(prefs.SearchCategories);
             request.Categories = "food";
             switch (prefs.MaxPriceRange)
             {
@@ -84,12 +89,12 @@ namespace SampleApi.DAL.YelpAPI
             Yelp.Api.Models.SearchResponse results = await client.SearchBusinessesAllAsync(request);
             return results;
         }
-        private string GetSearchCategoryString(List<string> categories)
+        private string GetSearchCategoryString(List<string> searchText)
         {
-            string resultString = categories[0];
-            for (int i=1; i<categories.Count; i++)
+            string resultString = searchText[0];
+            for (int i=1; i<searchText.Count; i++)
             {
-                resultString += ", " + categories[i];
+                resultString += ", " + searchText[i];
             }
             return resultString;
         }
@@ -99,7 +104,21 @@ namespace SampleApi.DAL.YelpAPI
             List<int> priceInts = new List<int>();
             foreach (string price in priceList)
             {
-                priceInts.Add(Int32.Parse(price));
+                switch(price)
+                {
+                    case "$":
+                        priceInts.Add(1);
+                        break;
+                    case "$$":
+                        priceInts.Add(2);
+                        break;
+                    case "$$$":
+                        priceInts.Add(3);
+                        break;
+                    case "$$$$":
+                        priceInts.Add(4);
+                        break;
+                }
             }
             return priceInts.Max();
         }
