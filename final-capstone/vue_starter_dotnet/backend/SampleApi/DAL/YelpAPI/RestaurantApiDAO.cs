@@ -33,10 +33,14 @@ namespace SampleApi.DAL.YelpAPI
                 {
                     RestaurantID = restaurant.Id,
                     Name = restaurant.Name,
-                    // TODO: Location parsing
+                    Address = restaurant.Location.Address1,
+                    City = restaurant.Location.City,
+                    State = restaurant.Location.State,
+                    ZIP = restaurant.Location.ZipCode,
                     Categories = GetSearchResultCategories(restaurant.Categories),
                     MaxPriceRange = GetMaxPrice(restaurant.Price),
-                    Distance = (double)restaurant.Distance
+                    Distance = Math.Round(restaurant.Distance / 1609.34,2), // in miles
+                    ImgUrl = restaurant.ImageUrl
                 });
             }
 
@@ -63,7 +67,7 @@ namespace SampleApi.DAL.YelpAPI
             #region Search Parameters
             request.Location = prefs.Location;
             request.Term = GetSearchCategoryString(prefs.SearchCategories);
-            request.Categories = "food";
+            request.Categories = "restaurant";
             switch (prefs.MaxPriceRange)
             {
                 case 1:

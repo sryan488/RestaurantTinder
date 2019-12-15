@@ -51,3 +51,5 @@ CREATE TABLE [dbo].[favorites]
 
 select * from users
 select * from preferences
+
+select * from preferences where users_id = 1

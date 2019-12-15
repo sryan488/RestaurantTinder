@@ -71,7 +71,6 @@ export default {
   },
   methods: {
       submitPreferences(){
-        // return fetch(`https://jsonplaceholder.typicode.com/users/`, this.form)
         return fetch(`https://localhost:44392/api/test`, {
             method: 'PUT',
             headers: {

@@ -71,5 +71,7 @@ namespace SampleApi.Models
         /// The distance from the given position.
         /// </summary>
         public double Distance { get; set; } // in miles
+
+        public string ImgUrl { get; set; }
     }
 }

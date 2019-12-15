@@ -32,8 +32,8 @@ namespace SampleApi.DAL.SQL
                         Preferences pref = new Preferences()
                         {
                             UserID = Convert.ToInt32(data["users_id"]),
-                            SearchCategories = DeserializeSearchText(Convert.ToString(data["cuisine"])),
-                            //PriceRange = DeserializePrices(Convert.ToString(data["price"])),
+                            SearchCategories = DeserializeSearchText(Convert.ToString(data["search_text"])),
+                            MaxPriceRange = Convert.ToInt32(data["price"]),
                             Location = Convert.ToString(data["city"]),
                             SearchRadius = Convert.ToDouble(data["distance"])
                         };
@@ -64,8 +64,8 @@ namespace SampleApi.DAL.SQL
                         Preferences pref = new Preferences()
                         {
                             UserID = Convert.ToInt32(data["users_id"]),
-                            SearchText = Convert.ToString(data["searchText"]),
-                            SearchCategories = DeserializeSearchText(Convert.ToString(data["searchText"])),
+                            SearchText = Convert.ToString(data["search_text"]),
+                            SearchCategories = DeserializeSearchText(Convert.ToString(data["search_text"])),
                             MaxPriceRange = Convert.ToInt32(data["price"]),
                             Location = Convert.ToString(data["location"]),
                             SearchRadius = Convert.ToDouble(data["radius"])
@@ -91,9 +91,9 @@ namespace SampleApi.DAL.SQL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(@"UPDATE preferences
-                                                      SET searchText = @searchText, price = @price_range, location = @location, radius = @radius
+                                                      SET search_text = @search_text, price = @price_range, location = @location, radius = @radius
                                                       WHERE users_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    cmd.Parameters.AddWithValue("@search_text", searchText);
                     cmd.Parameters.AddWithValue("@price_range", preferences.MaxPriceRange);
                     cmd.Parameters.AddWithValue("@location", preferences.Location);
                     cmd.Parameters.AddWithValue("@radius", preferences.SearchRadius);
@@ -111,7 +111,14 @@ namespace SampleApi.DAL.SQL
         #region Internal functions
         private List<string> DeserializeSearchText(string searchText)
         {
-            return searchText.Split(',').ToList<string>();
+            if(searchText.Contains(','))
+            {
+                return searchText.Split(',').ToList<string>();
+            }
+            else
+            {
+                return new List<string>() { searchText };
+            }
         }
         #endregion
 
