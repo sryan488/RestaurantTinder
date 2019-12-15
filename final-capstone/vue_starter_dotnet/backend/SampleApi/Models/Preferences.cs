@@ -11,7 +11,7 @@ namespace SampleApi.Models
 
         public List<string> Categories { get; set; }
 
-        public int PriceRange { get; set; }
+        public int MaxPriceRange { get; set; }
 
         public string Location { get; set; }
 

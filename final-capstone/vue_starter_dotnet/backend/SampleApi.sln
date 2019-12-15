@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{F7A17D5D-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApi.Tests", "SampleApi.Tests\SampleApi.Tests.csproj", "{8F604667-17C7-4905-9EDE-80FABCCD30EA}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RestaurantTinderDB", "RestaurantTinderDB\RestaurantTinderDB.sqlproj", "{3E341306-CE13-4F48-925F-8C92E72DDD02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{8F604667-17C7-4905-9EDE-80FABCCD30EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F604667-17C7-4905-9EDE-80FABCCD30EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F604667-17C7-4905-9EDE-80FABCCD30EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E341306-CE13-4F48-925F-8C92E72DDD02}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

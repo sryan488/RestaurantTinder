@@ -65,7 +65,7 @@ namespace SampleApi.DAL.SQL
                         {
                             UserID = Convert.ToInt32(data["users_id"]),
                             Categories = DeserializeCategories(Convert.ToString(data["categories"])),
-                            PriceRange = Convert.ToInt32(data["price"]),
+                            MaxPriceRange = Convert.ToInt32(data["price"]),
                             Location = Convert.ToString(data["location"]),
                             SearchRadius = Convert.ToDouble(data["radius"])
                         };
@@ -93,7 +93,7 @@ namespace SampleApi.DAL.SQL
                                                       SET categories = @categories, price = @price_range, location = @location, radius = @radius
                                                       WHERE users_id = @ui;", conn);
                     cmd.Parameters.AddWithValue("@categories", categoryString);
-                    cmd.Parameters.AddWithValue("@price_range", preferences.PriceRange);
+                    cmd.Parameters.AddWithValue("@price_range", preferences.MaxPriceRange);
                     cmd.Parameters.AddWithValue("@location", preferences.Location);
                     cmd.Parameters.AddWithValue("@radius", preferences.SearchRadius);
                     cmd.Parameters.AddWithValue("@ui", userID);

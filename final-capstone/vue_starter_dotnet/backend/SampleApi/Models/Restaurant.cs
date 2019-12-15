@@ -65,7 +65,7 @@ namespace SampleApi.Models
         /// <summary>
         /// The price range of the restaurant. Scale of 1-4, 1 being cheapest, 4 being most expensive.
         /// </summary>
-        public int PriceRange { get; set; }
+        public int MaxPriceRange { get; set; }
 
         /// <summary>
         /// The distance from the given position.

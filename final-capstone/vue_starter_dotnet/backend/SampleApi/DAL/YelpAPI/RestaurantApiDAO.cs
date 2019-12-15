@@ -29,8 +29,8 @@ namespace SampleApi.DAL.YelpAPI
                     RestaurantID = restaurant.Id,
                     Name = restaurant.Name,
                     // TODO: Location parsing
-                    //Categories = GetCategoryList(restaurant.Categories),
-                    //PriceRange = GetMaxPrice(restaurant.Price),
+                    Categories = GetSearchResultCategories(restaurant.Categories),
+                    MaxPriceRange = GetMaxPrice(restaurant.Price),
                     Distance = (double)restaurant.Distance
                 });
             }
@@ -57,44 +57,41 @@ namespace SampleApi.DAL.YelpAPI
             // Fill in the search parameters
             #region Search Parameters
             request.Location = prefs.Location;
-            request.Categories = "restaurants";
-            foreach (string cat in prefs.Categories)
+            request.Term = GetSearchCategoryString(prefs.Categories);
+            request.Categories = "food";
+            switch (prefs.MaxPriceRange)
             {
-                request.Categories += $", {cat}";
+                case 1:
+                    request.Price = "1";
+                    break;
+                case 2:
+                    request.Price = "1, 2";
+                    break;
+                case 3:
+                    request.Price = "1, 2, 3";
+                    break;
+                case 4:
+                    request.Price = "1, 2, 3, 4";
+                    break;
+                default:
+                    request.Price = "1, 2, 3, 4";
+                    break;
             }
-            //switch(prefs.PriceRange)
-            //{
-            //    case 1:
-            //        request.Price = "1";
-            //        break;
-            //    case 2:
-            //        request.Price = "1, 2";
-            //        break;
-            //    case 3:
-            //        request.Price = "1, 2, 3";
-            //        break;
-            //    case 4:
-            //        request.Price = "1, 2, 3, 4";
-            //        break;
-            //    default:
-            //        request.Price = "1, 2, 3, 4";
-            //        break;
-            //}
-            //request.Radius = (int)Math.Round(prefs.SearchRadius, 0);
+            request.Radius = (int)Math.Round((prefs.SearchRadius / 1609.34), 0);
             #endregion
 
             // Run the search and return the results
             Yelp.Api.Models.SearchResponse results = await client.SearchBusinessesAllAsync(request);
             return results;
         }
-        private List<string> GetCategoryList(Category[] categories)
+        private string GetSearchCategoryString(List<string> categories)
         {
-            var results = new List<string>();
-            foreach(var c in categories)
+            string resultString = categories[0];
+            for (int i=1; i<categories.Count; i++)
             {
-                results.Add(c.Title);
+                resultString += ", " + categories[i];
             }
-            return results;
+            return resultString;
         }
         private int GetMaxPrice(string prices)
         {
@@ -105,6 +102,19 @@ namespace SampleApi.DAL.YelpAPI
                 priceInts.Add(Int32.Parse(price));
             }
             return priceInts.Max();
+        }
+        private List<string> GetSearchResultCategories(Category[] categories)
+        {
+            if (categories.Length == 0)
+            {
+                return new List<string>() { "None" };
+            }
+            var result = new List<string>() { categories[0].Title };
+            for (int i=1; i<categories.Length; i++)
+            {
+                result.Add(categories[i].Title);
+            }
+            return result;
         }
         #endregion
 

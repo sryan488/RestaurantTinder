@@ -101,7 +101,7 @@ namespace SampleApi.DAL
             Preferences pref = new Preferences()
             {
                 Categories = new List<string>() {"Shushi", "Za", "Sandos"},
-                PriceRange = 1,
+                MaxPriceRange = 1,
                 Location = "Cleveland",
                 SearchRadius = 5
             };

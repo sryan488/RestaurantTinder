@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="128c93bb-6aa3-45db-bf86-948fdec57f17" ChangeDateTime="12/15/2019 19:04:40">
+    <Property Name="ElementName" Value="[dbo].[FK_users_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[preferences]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_users]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="22cf2ebc-0ee8-46b8-a5f4-44da438912a8" ChangeDateTime="12/15/2019 19:04:47">
+    <Property Name="ElementName" Value="[dbo].[FK_users]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[preferences]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[users]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="728cb217-68b4-4096-a6bb-74b27b431b02" ChangeDateTime="12/15/2019 19:10:26">
+    <Property Name="ElementName" Value="[dbo].[favorites].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="users_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6cd1682b-f025-4604-aa7f-d1b0c991d85a" ChangeDateTime="12/15/2019 19:18:40">
+    <Property Name="ElementName" Value="[dbo].[blacklist].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[blacklist]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="users_id" />
+  </Operation>
+</Operations>
