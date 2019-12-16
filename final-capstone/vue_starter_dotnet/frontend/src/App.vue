@@ -8,9 +8,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <router-link to="/" class="nav-link">Home </router-link>
-      </li>
+     
       <li class="nav-item">
         <router-link to="/preferenceForm" class="nav-link">Preferences </router-link>
       </li>
@@ -18,9 +16,9 @@
         <router-link to="/results" class="nav-link">Results </router-link>
       </li>
     </ul>
-    <div v-if="['results', 'preferenceForm'].includes($route.name)">
+    <span v-if="['results', 'preferenceForm'].includes($route.name)">
       <button class="btn btn-secondary my-2 my-sm-0" v-on:click="logOut">Log Out</button>
-    </div>
+    </span>
   </div>
 </nav>
    
