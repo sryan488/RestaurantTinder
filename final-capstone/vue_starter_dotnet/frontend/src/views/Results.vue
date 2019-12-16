@@ -24,10 +24,10 @@
         class="rounded-borders card card--one">
         <div style="height: 100%">
           <img
-            :src="require(`../assets/images/${current.src}`)"
+            :src="require(`${current.imgUrl}`)"
             class="rounded-borders"/>
           <div class="text">
-            <h2>{{current.name}}, <span>{{current.age}}</span></h2>
+            <h2>{{current.name}} - <span>{{current.maxPriceRange}}</span></h2>
           </div>
         </div>
       </Vue2InteractDraggable>
@@ -38,7 +38,7 @@
       style="z-index: 2">
       <div style="height: 100%">
         <img
-          :src="require(`../assets/images/${next.src}`)"
+          :src="require(`${next.imgUrl}`)"
           class="rounded-borders"/>
         <div class="text">
             <h2>{{next.name}}, <span>{{next.age}}</span></h2>
@@ -105,15 +105,16 @@ export default {
         { src: '12.jpg', name: 'Tucker', age: 9 },
         { src: '13.jpg', name: 'Uriel', age: 6 },
         { src: 'zoe.jpg', name: 'Zoe', age: 2 },
-      ]
+      ],
+      restaurants: []
     }
   },
   computed: {
     current() {
-      return this.cards[this.index]
+      return this.restaurants[this.index]
     },
     next() {
-      return this.cards[this.index + 1]
+      return this.restaurants[this.index + 1]
     }
   },
   methods: {

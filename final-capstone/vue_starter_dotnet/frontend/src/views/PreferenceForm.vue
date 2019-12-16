@@ -81,11 +81,9 @@ export default {
             body: JSON.stringify(this.form)
         })
         .then((response) => {
-        return response.json();
-          })
-            .then(this.$router.push('/results'))
-            .then(this.$emit('user-id', this.preference.userID));
-
+            if (response.ok) {
+                this.$router.push('/results')
+            }})
       }
   },
     created() {
