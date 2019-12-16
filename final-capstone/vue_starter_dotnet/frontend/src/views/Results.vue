@@ -23,11 +23,16 @@
         @draggedUp="emitAndNext('skip')"
         class="rounded-borders card card--one">
         <div style="height: 100%">
-          <img
+          <!-- <img
             :src="require(`${current.imgUrl}`)"
-            class="rounded-borders"/>
+            class="rounded-borders"/> -->
+          <img :src="current.imgUrl" class="rounded-borders"/> 
+
           <div class="text">
             <h2>{{current.name}}</h2>
+            <div v-for="cash in current.maxPriceRange" v-bind:key="cash">
+            <span>$</span>
+            </div>
             <!-- <h2 color="white"> RESTAURANTS: {{restaurants[0].name}}</h2> -->
           </div>
         </div>
@@ -38,9 +43,10 @@
       class="rounded-borders card card--two fixed fixed--center"
       style="z-index: 2">
       <div style="height: 100%">
-        <img
+        <!-- <img
           :src="require(`${next.imgUrl}`)"
-          class="rounded-borders"/>
+          class="rounded-borders"/> -->
+          <img :src="next.imgUrl" class="rounded-borders"/> 
         <div class="text">
             <h2>{{next.name}}</h2>
             <!-- <h2 color="white"> RESTAURANTS: {{restaurants[1].name}}</h2> -->
@@ -64,10 +70,10 @@
       <div class="btn btn--like" @click="match">
           <i class="material-icons">favorite</i>
       </div>
-      <div v-for="restaurant in restaurants" v-bind:key="restaurant">
+      <!-- <div v-for="restaurant in restaurants" v-bind:key="restaurant">
         <p>NAME: {{restaurant.name}}</p>
         
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
@@ -97,17 +103,6 @@ export default {
         { src: '1.jpg', name: 'Karina', age: 7 },
         { src: '2.jpg', name: 'Alexander', age: 5 },
         { src: '3.jpg', name: 'Bona', age: 3 },
-        { src: '4.jpg', name: 'Ichi', age: 7 },
-        { src: '5.jpg', name: 'Lloyd', age: 4 },
-        { src: '6.jpg', name: 'Luiza', age: 9 },
-        { src: '7.jpg', name: 'Max', age: 6 },
-        { src: '8.jpg', name: 'Mona', age: 3 },
-        { src: '9.jpg', name: 'Naru', age: 7 },
-        { src: '10.jpg', name: 'Ramdan', age: 8 },
-        { src: '11.jpg', name: 'Rikki Austin', age: 3 },
-        { src: '12.jpg', name: 'Tucker', age: 9 },
-        { src: '13.jpg', name: 'Uriel', age: 6 },
-        { src: 'zoe.jpg', name: 'Zoe', age: 2 },
       ],
       restaurants: []
     }
@@ -241,6 +236,7 @@ export default {
 }
 .card {
   width: 80vw;
+  max-width: 400px;
   height: 60vh;
   color: white;
   img {
