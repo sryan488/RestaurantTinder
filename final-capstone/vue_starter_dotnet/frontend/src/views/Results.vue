@@ -27,7 +27,8 @@
             :src="require(`${current.imgUrl}`)"
             class="rounded-borders"/>
           <div class="text">
-            <h2>{{current.name}} - <span>{{current.maxPriceRange}}</span></h2>
+            <h2>{{current.name}}</h2>
+            <!-- <h2 color="white"> RESTAURANTS: {{restaurants[0].name}}</h2> -->
           </div>
         </div>
       </Vue2InteractDraggable>
@@ -41,7 +42,8 @@
           :src="require(`${next.imgUrl}`)"
           class="rounded-borders"/>
         <div class="text">
-            <h2>{{next.name}}, <span>{{next.age}}</span></h2>
+            <h2>{{next.name}}</h2>
+            <!-- <h2 color="white"> RESTAURANTS: {{restaurants[1].name}}</h2> -->
           </div>
       </div>
     </div>
@@ -69,6 +71,7 @@
     </div>
   </section>
 </template>
+
 <script>
 import auth from '../auth';
 import { Vue2InteractDraggable, InteractEventBus } from 'vue2-interact'
