@@ -64,6 +64,7 @@
       </div>
       <div v-for="restaurant in restaurants" v-bind:key="restaurant">
         <p>NAME: {{restaurant.name}}</p>
+        
       </div>
     </div>
   </section>
