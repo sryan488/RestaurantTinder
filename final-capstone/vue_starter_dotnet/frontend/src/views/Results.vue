@@ -62,10 +62,14 @@
       <div class="btn btn--like" @click="match">
           <i class="material-icons">favorite</i>
       </div>
+      <div v-for="restaurant in restaurants" v-bind:key="restaurant">
+        <p>NAME: {{restaurant.name}}</p>
+      </div>
     </div>
   </section>
 </template>
 <script>
+import auth from '../auth';
 import { Vue2InteractDraggable, InteractEventBus } from 'vue2-interact'
 const EVENTS = {
   MATCH: 'match',
@@ -86,19 +90,19 @@ export default {
         draggedUp: EVENTS.SKIP
       },
       cards: [
-        { src: 'karina.jpg', name: 'Karina', age: 7 },
-        { src: 'alexander.jpg', name: 'Alexander', age: 5 },
-        { src: 'bona.jpg', name: 'Bona', age: 3 },
-        { src: 'ichi.jpg', name: 'Ichi', age: 7 },
-        { src: 'lloyd.jpg', name: 'Lloyd', age: 4 },
-        { src: 'luiza.jpg', name: 'Luiza', age: 9 },
-        { src: 'max.jpg', name: 'Max', age: 6 },
-        { src: 'mona.jpg', name: 'Mona', age: 3 },
-        { src: 'naru.jpg', name: 'Naru', age: 7 },
-        { src: 'ramdan.jpg', name: 'Ramdan', age: 8 },
-        { src: 'rikki-austin.jpg', name: 'Rikki Austin', age: 3 },
-        { src: 'tucker.jpg', name: 'Tucker', age: 9 },
-        { src: 'uriel.jpg', name: 'Uriel', age: 6 },
+        { src: '1.jpg', name: 'Karina', age: 7 },
+        { src: '2.jpg', name: 'Alexander', age: 5 },
+        { src: '3.jpg', name: 'Bona', age: 3 },
+        { src: '4.jpg', name: 'Ichi', age: 7 },
+        { src: '5.jpg', name: 'Lloyd', age: 4 },
+        { src: '6.jpg', name: 'Luiza', age: 9 },
+        { src: '7.jpg', name: 'Max', age: 6 },
+        { src: '8.jpg', name: 'Mona', age: 3 },
+        { src: '9.jpg', name: 'Naru', age: 7 },
+        { src: '10.jpg', name: 'Ramdan', age: 8 },
+        { src: '11.jpg', name: 'Rikki Austin', age: 3 },
+        { src: '12.jpg', name: 'Tucker', age: 9 },
+        { src: '13.jpg', name: 'Uriel', age: 6 },
         { src: 'zoe.jpg', name: 'Zoe', age: 2 },
       ]
     }
@@ -129,6 +133,23 @@ export default {
         this.isVisible = true
       }, 200)
     }
+  },
+  created() {
+    // load the restaurants
+    fetch(`https://localhost:44392/api/test/GetRestaurants`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+      .then((response) => {
+        return response.json();
+            })
+            .then((restaurants) => {
+                this.restaurants = restaurants;
+                })
+                .catch((err) => console.error(err));
   }
 }
 </script>
