@@ -18,12 +18,12 @@
         <router-link to="/results" class="nav-link">Results </router-link>
       </li>
     </ul>
-    
+    <div v-if="['results', 'preferenceForm'].includes($route.name)">
       <button class="btn btn-secondary my-2 my-sm-0" v-on:click="logOut">Log Out</button>
-    
+    </div>
   </div>
 </nav>
-   <div class="container">
+   
   
     
     <!-- <div id="nav">
@@ -32,25 +32,11 @@
       <router-link to="/results">Results </router-link>
       <button v-on:click="logOut"> Log Out</button>
     </div> -->
-<div class="row">
-          <div class="col-lg-4">
-          </div>
-          <div class="col-lg-4 shadow-lg p-3 mb-5 bg-white rounded">
-          <div class="card border-primary mb-3 text-center justify-content-center " style="max-width: 20rem;">
-          <div class="card-header">Welcome <i class="fas fa-key"></i></div>
-          <div class="card-body">
-            <p class="card-text"><router-view/></p>
-           
-          </div>
-          <div class="col-lg-4">
-          </div>
- </div>
+
     
-    
+    <router-view/>
   </div>
-</div>
-    
-  </div></div>
+
 </template>
 
 <script>
