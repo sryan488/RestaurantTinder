@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import PreferenceForm from './views/PreferenceForm.vue'
 import Results from './views/Results.vue'
+import welcome from './views/welcome.vue'
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -58,6 +59,13 @@ const router = new Router({
       path: "/results",
       name: "results",
       component: Results,
+      meta: {
+        requiresAuth: true
+      }},
+    {   
+      path: "/welcome",
+      name: "welcome",
+      component: welcome,
       meta: {
         requiresAuth: true
       }

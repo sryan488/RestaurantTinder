@@ -1,4 +1,9 @@
 <template>
+<div>
+  <p></p>
+        <div class="row">
+            <div class="col-4"></div>
+          <div class="card border-secondary mb-3 text-center col-4" style="max-width: 30rem;">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
@@ -26,11 +31,11 @@
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      /><p></P>
+      <p>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit <i class="fas fa-sign-in-alt"></i></button></p><router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>
-  </div>
+  </div></div></div></div>
 </template>
 
 <script>
@@ -71,7 +76,7 @@ export default {
               token = token.replace(/"/g, '');
             }
             auth.saveToken(token);
-            this.$router.push('/');
+            this.$router.push('/welcome');
           }
         })
         .catch((err) => console.error(err));

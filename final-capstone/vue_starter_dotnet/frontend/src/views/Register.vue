@@ -1,4 +1,9 @@
 <template>
+<div>
+  <p></p>
+        <div class="row">
+            <div class="col-4"></div>
+          <div class="card border-secondary mb-3 text-center col-4" style="max-width: 30rem;">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -31,15 +36,16 @@
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
+      /><p></P>
+      <p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Create Account <i class="fas fa-plus-circle"></i>
+      </button></p>
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
     </form>
-  </div>
+  </div></div></div></div>
 </template>
 
 <script>
