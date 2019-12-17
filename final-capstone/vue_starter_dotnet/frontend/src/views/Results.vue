@@ -184,7 +184,7 @@ export default {
   width: 50px;
   height: 50px;
   padding: .2rem;
-  border-radius: 50%;
+  border-radius: 2%;
   background-color: white;
   box-shadow: 0 6px 6px -3px rgba(0,0,0,0.02), 0 10px 14px 1px rgba(0,0,0,0.02), 0 4px 18px 3px rgba(0,0,0,0.02);
   cursor: pointer;
