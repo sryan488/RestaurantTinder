@@ -17,25 +17,20 @@ namespace SampleApi.DAL.SQL
         }
 
         #region Favorites List
-        public List<Restaurant> GetFavorites(User user)
+        public List<Restaurant> GetFavorites(int userId)
         {
             try
             {
                 List<Restaurant> results = new List<Restaurant>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from Favorites where userID = @userID");
-                    cmd.Parameters.AddWithValue("@userID", user.Id);
+                    SqlCommand cmd = new SqlCommand("select * from favorites where userID = @userID");
+                    cmd.Parameters.AddWithValue("@userID", userId);
                     conn.Open();
                     SqlDataReader data = cmd.ExecuteReader();
                     while(data.Read())
                     {
-                        Restaurant restaurant = new Restaurant()
-                        {
-                            RestaurantID = Convert.ToString(data["restaurant_id"])
-                            // TODO: get rest of restaurant information from API
-                        };
-                        results.Add(restaurant);
+                        results.Add(ConvertDataRowToRestaurant(data));
                     }
                     return results;
                 }
@@ -46,7 +41,7 @@ namespace SampleApi.DAL.SQL
             }
         }
 
-        public void AddFavorite(User user, Restaurant restaurant)
+        public void AddFavorite(int userId, Restaurant restaurant)
         {
             try
             {
@@ -54,9 +49,18 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Favorites (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
-                    cmd.Parameters.AddWithValue("@ui", user.Id);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO favorites (users_id, restaurant_id, name, address, city, state, zip, categories, img_url) 
+                                                      VALUES (@userID, @restaurantID, @name, @address, @city, @state, @zip, @categories, @img)"
+                        , conn);
+                    cmd.Parameters.AddWithValue("@restaurantID", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
+                    cmd.Parameters.AddWithValue("@name", restaurant.Name);
+                    cmd.Parameters.AddWithValue("@address", restaurant.Address);
+                    cmd.Parameters.AddWithValue("@city", restaurant.City);
+                    cmd.Parameters.AddWithValue("@state", restaurant.State);
+                    cmd.Parameters.AddWithValue("@zip", restaurant.ZIP);
+                    cmd.Parameters.AddWithValue("@categories", CategoriesToString(restaurant.Categories));
+                    cmd.Parameters.AddWithValue("@img", restaurant.ImgUrl);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -67,7 +71,7 @@ namespace SampleApi.DAL.SQL
             }
         }
 
-        public void RemoveFavorite(User user, Restaurant restaurant)
+        public void RemoveFavorite(int userId, Restaurant restaurant)
         {
             try
             {
@@ -75,9 +79,9 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("REMOVE FROM Favorites (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
-                    cmd.Parameters.AddWithValue("@ui", user.Id);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM favorites WHERE (users_id = @userID AND restaurant_id = @restaurantID)", conn);
+                    cmd.Parameters.AddWithValue("@restaurantID", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -90,12 +94,31 @@ namespace SampleApi.DAL.SQL
         #endregion
 
         #region Blacklist
-        public List<Restaurant> GetBlacklist(User user)
+        public List<Restaurant> GetBlacklist(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Restaurant> results = new List<Restaurant>();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from blacklist where userID = @userID");
+                    cmd.Parameters.AddWithValue("@userID", userId);
+                    conn.Open();
+                    SqlDataReader data = cmd.ExecuteReader();
+                    while (data.Read())
+                    {
+                        results.Add(ConvertDataRowToRestaurant(data));
+                    }
+                    return results;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
         }
 
-        public void AddBlacklist(User user, Restaurant restaurant)
+        public void AddBlacklist(int userId, Restaurant restaurant)
         {
             try
             {
@@ -103,9 +126,18 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Blacklist (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
-                    cmd.Parameters.AddWithValue("@ui", user.Id);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO favorites (users_id, restaurant_id, name, address, city, state, zip, categories, img_url) 
+                                                      VALUES (@userID, @restaurantID, @name, @address, @city, @state, @zip, @categories, @img)"
+                        , conn);
+                    cmd.Parameters.AddWithValue("@restaurantID", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
+                    cmd.Parameters.AddWithValue("@name", restaurant.Name);
+                    cmd.Parameters.AddWithValue("@address", restaurant.Address);
+                    cmd.Parameters.AddWithValue("@city", restaurant.City);
+                    cmd.Parameters.AddWithValue("@state", restaurant.State);
+                    cmd.Parameters.AddWithValue("@zip", restaurant.ZIP);
+                    cmd.Parameters.AddWithValue("@categories", CategoriesToString(restaurant.Categories));
+                    cmd.Parameters.AddWithValue("@img", restaurant.ImgUrl);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -116,7 +148,7 @@ namespace SampleApi.DAL.SQL
             }
         }
 
-        public void RemoveBlacklist(User user, Restaurant restaurant)
+        public void RemoveBlacklist(int userId, Restaurant restaurant)
         {
             try
             {
@@ -124,9 +156,9 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Blacklist (restaurant_id) VALUES (@ri) WHERE user_id = @ui;", conn);
-                    cmd.Parameters.AddWithValue("@ri", restaurant.RestaurantID);
-                    cmd.Parameters.AddWithValue("@ui", user.Id);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM blacklist WHERE (users_id = @userID AND restaurant_id = @restaurantID)", conn);
+                    cmd.Parameters.AddWithValue("@restaurantID", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -139,15 +171,25 @@ namespace SampleApi.DAL.SQL
         #endregion
 
         #region Internal functions
-        private User MapRowToUser(SqlDataReader reader)
+        private string CategoriesToString(List<string> categories)
         {
-            return new User()
+            return String.Join(',', categories);
+        }
+        private List<string> StringToCategories(string categories)
+        {
+            return categories.Split(',').ToList<string>();
+        }
+        private Restaurant ConvertDataRowToRestaurant(SqlDataReader data)
+        {
+            return new Restaurant()
             {
-                Id = Convert.ToInt32(reader["id"]),
-                Username = Convert.ToString(reader["username"]),
-                Password = Convert.ToString(reader["password"]),
-                Salt = Convert.ToString(reader["salt"]),
-                Role = Convert.ToString(reader["role"])
+                RestaurantID = Convert.ToString(data["restaurant_id"]),
+                Address = Convert.ToString(data["address"]),
+                City = Convert.ToString(data["city"]),
+                State = Convert.ToString(data["state"]),
+                ZIP = Convert.ToString(data["zip"]),
+                Categories = StringToCategories(Convert.ToString(data["categories"])),
+                ImgUrl = Convert.ToString(data["img_url"])
             };
         }
         #endregion

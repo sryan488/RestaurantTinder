@@ -28,4 +28,46 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="users_id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="9f5b1220-9899-4290-a143-f7bd9bf6ac73" ChangeDateTime="12/17/2019 14:39:49">
+    <Property Name="ElementName" Value="[dbo].[favorites].[ZIP]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="zip" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7a229c21-7241-47fa-9afc-d777a97fe5f8" ChangeDateTime="12/17/2019 14:39:52">
+    <Property Name="ElementName" Value="[dbo].[favorites].[State]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="state" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="41a96ff0-7750-4407-83b5-fb765a0eadb2" ChangeDateTime="12/17/2019 14:39:54">
+    <Property Name="ElementName" Value="[dbo].[favorites].[City]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="city" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="910c08f3-8608-4538-9b30-e4fcf993307a" ChangeDateTime="12/17/2019 14:39:56">
+    <Property Name="ElementName" Value="[dbo].[favorites].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="49a223bc-9b00-4d75-b883-2e999995f016" ChangeDateTime="12/17/2019 14:39:59">
+    <Property Name="ElementName" Value="[dbo].[favorites].[Address]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="address" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1794bbab-9e47-4a97-af90-c46a8fbf4318" ChangeDateTime="12/17/2019 14:40:04">
+    <Property Name="ElementName" Value="[dbo].[favorites].[Categories]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[favorites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="categories" />
+  </Operation>
 </Operations>
