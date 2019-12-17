@@ -9,11 +9,10 @@
               <h1>Login </h1>
               <hr>
               <h1><i class="fas fa-utensils fa-4x" style="color: #884B99"></i></h1>
-              <p>
-                <hr>
+                <p>
               <router-link :to="{ name: 'login' }"><button type="button" class="btn btn-primary btn-lg btn-block">Login <i class="fas fa-sign-in-alt"></i></button></router-link> &nbsp;
               <router-link :to="{ name: 'register' }"><button type="button" class="btn btn-info btn-lg btn-block">New Account <i class="far fa-user-circle"></i></button></router-link>
-              </p>
+                </p>
           </div>
     </div>
   </div>

@@ -74,7 +74,7 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-            this.$router.push({ path: '/account/login', query: { registration: 'success' } });
+            this.$router.push('login');
           } else {
             this.registrationErrors = true;
           }

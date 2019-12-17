@@ -59,7 +59,7 @@
       </div>
     </div>
     <div
-      v-if="index + 2 < cards.length"
+      v-if="index + 2 <= restaurants.length"
       class="rounded-borders card card--three fixed fixed--center"
       style="z-index: 1">
       <div style="height: 100%">
@@ -259,7 +259,7 @@ export default {
   }
   &--three {
     background: rgba(black, .8);
-    transform: translate(-50%, -46%);
+    transform: translate(-50%, -47%);
     box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
   }
   .text {
