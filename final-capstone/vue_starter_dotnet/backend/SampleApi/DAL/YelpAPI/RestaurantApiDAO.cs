@@ -87,6 +87,7 @@ namespace SampleApi.DAL.YelpAPI
                     break;
             }
             request.Radius = (int)Math.Round((prefs.SearchRadius / 1609.34), 0);
+            request.MaxResults = 50;
             #endregion
 
             // Run the search and return the results
