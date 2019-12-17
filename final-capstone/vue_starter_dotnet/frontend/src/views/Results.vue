@@ -1,9 +1,7 @@
 <template>
   <section class="container">
     <div class="fixed header">
-      <i class="material-icons" @click="index = 0">refresh</i>
-      <span>Kittynder</span>
-      <i class="material-icons">tune</i>
+      <i class="material-icons" @click="index = 0">Refresh</i>
     </div>
     <div
       v-if="current"
@@ -67,13 +65,13 @@
     </div>
     <div class="footer fixed">
       <div class="btn btn--decline" @click="reject">
-          <i class="material-icons">reject</i>
+          <i class="material-icons">Reject</i>
       </div>
       <div class="btn btn--skip" @click="skip">
-          <i class="material-icons">skip</i>
+          <i class="material-icons">Skip</i>
       </div>
       <div class="btn btn--like" @click="match">
-          <i class="material-icons">favorite</i>
+          <i class="material-icons">Favorite</i>
       </div>
       <!-- <div v-for="restaurant in restaurants" v-bind:key="restaurant">
         <p>NAME: {{restaurant.name}}</p>
@@ -162,14 +160,14 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: #eceff1;
-  width: 100%;
+  width: 90vh;
   height: 100vh;
 }
 
 
 
 .footer {
-  width: 77vw;
+  width: 23vw;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -184,7 +182,7 @@ export default {
   width: 50px;
   height: 50px;
   padding: .2rem;
-  border-radius: 50%;
+  border-radius: 2%;
   background-color: white;
   box-shadow: 0 6px 6px -3px rgba(0,0,0,0.02), 0 10px 14px 1px rgba(0,0,0,0.02), 0 4px 18px 3px rgba(0,0,0,0.02);
   cursor: pointer;
@@ -283,6 +281,10 @@ export default {
       font-weight: 700;
     }
   }
+}
+
+.material-icons{
+cursor: pointer;
 }
 
 .transition {
