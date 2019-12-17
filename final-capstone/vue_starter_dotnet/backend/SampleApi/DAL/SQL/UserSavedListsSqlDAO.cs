@@ -24,7 +24,7 @@ namespace SampleApi.DAL.SQL
                 List<Restaurant> results = new List<Restaurant>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from favorites where userID = @userID");
+                    SqlCommand cmd = new SqlCommand("select * from favorites where users_id = @userID", conn);
                     cmd.Parameters.AddWithValue("@userID", userId);
                     conn.Open();
                     SqlDataReader data = cmd.ExecuteReader();
@@ -101,7 +101,7 @@ namespace SampleApi.DAL.SQL
                 List<Restaurant> results = new List<Restaurant>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from blacklist where userID = @userID");
+                    SqlCommand cmd = new SqlCommand("select * from blacklist where users_ID = @userID", conn);
                     cmd.Parameters.AddWithValue("@userID", userId);
                     conn.Open();
                     SqlDataReader data = cmd.ExecuteReader();
@@ -184,6 +184,7 @@ namespace SampleApi.DAL.SQL
             return new Restaurant()
             {
                 RestaurantID = Convert.ToString(data["restaurant_id"]),
+                Name = Convert.ToString(data["name"]),
                 Address = Convert.ToString(data["address"]),
                 City = Convert.ToString(data["city"]),
                 State = Convert.ToString(data["state"]),
