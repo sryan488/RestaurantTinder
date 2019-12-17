@@ -17,20 +17,24 @@ namespace SampleApi.Controllers
     [ApiController]
     public class VueApiTestController : ControllerBase
     {
+        #region Constructor & DAOs
         private IPreferencesDAO prefDAO;
         private IUserDAO userDAO;
+        private IUserSavedListsDAO listsDAO;
         private IPasswordHasher passwordHasher;
         private IRestaurantDAO yelpDAO;
 
-        public VueApiTestController(IPreferencesDAO dao, IUserDAO userDao, IPasswordHasher passwordHasher, IRestaurantDAO yelpDAO)
+        public VueApiTestController(IPreferencesDAO dao, IUserDAO userDao, IUserSavedListsDAO listsDAO, IPasswordHasher passwordHasher, IRestaurantDAO yelpDAO)
         {
             this.prefDAO = dao;
             this.userDAO = userDao;
             this.yelpDAO = yelpDAO;
+            this.listsDAO = listsDAO;
             this.passwordHasher = passwordHasher;
         }
+        #endregion
 
-
+        #region Preferences
         [HttpGet]
         public Preferences GetUserPreferences()
         {
@@ -49,7 +53,55 @@ namespace SampleApi.Controllers
             prefDAO.SetUserPrefs(id, newPrefs);
             return NoContent();
         }
+        #endregion
 
+        #region Favorites
+        [HttpGet("GetFavorites")]
+        public List<Restaurant> GetFavorites()
+        {
+            int user_id = GetCurrentUserId();
+            return listsDAO.GetFavorites(user_id);
+        }
+        [HttpPost("AddFavorite")]
+        public ActionResult AddFavorite(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.AddFavorite(user_id, restaurant);
+            return StatusCode(201); // Created
+        }
+        [HttpDelete("RemoveFavorite")]
+        public ActionResult RemoveFavorite(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.RemoveFavorite(user_id, restaurant);
+            return NoContent();
+        }
+        #endregion
+
+        #region Blacklist
+        [HttpGet("GetBlacklist")]
+        public List<Restaurant> GetBlacklist()
+        {
+            int user_id = GetCurrentUserId();
+            return listsDAO.GetBlacklist(user_id);
+        }
+        [HttpPost("AddBlacklist")]
+        public ActionResult AddBlacklist(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.AddBlacklist(user_id, restaurant);
+            return StatusCode(201); // Created
+        }
+        [HttpDelete("RemoveBlacklist")]
+        public ActionResult RemoveBlacklist(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.RemoveBlacklist(user_id, restaurant);
+            return NoContent();
+        }
+        #endregion
+
+        #region Yelp API Calls
         [HttpGet("GetRestaurants")]
         public List<Restaurant> GetRestaurants() // placeholder, may need diff controllers
         {
@@ -59,10 +111,13 @@ namespace SampleApi.Controllers
             // Perform the search and return the results as json
             return yelpDAO.GetRestaurants(prefs);
         }
+        #endregion
 
+        #region Internal Functions
         private int GetCurrentUserId()
         {
             return userDAO.GetUser(base.User.Identity.Name).Id;
         }
+        #endregion
     }
 }
