@@ -103,13 +103,21 @@ namespace SampleApi.Controllers
 
         #region Yelp API Calls
         [HttpGet("GetRestaurants")]
-        public List<Restaurant> GetRestaurants() // placeholder, may need diff controllers
+        public ActionResult<List<Restaurant>> GetRestaurants() // placeholder, may need diff controllers
         {
             int user_id = GetCurrentUserId();
             Preferences prefs = prefDAO.GetUserPrefs(user_id);
 
             // Perform the search and return the results as json
-            return yelpDAO.GetRestaurants(prefs);
+            List<Restaurant> results = yelpDAO.GetRestaurants(prefs);
+            if (results.Count == 0)
+            {
+                return NotFound(); // no results found, display the "no search results" page
+            }
+            else
+            {
+                return results;
+            }
         }
         #endregion
 

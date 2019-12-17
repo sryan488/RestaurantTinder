@@ -23,7 +23,7 @@ namespace SampleApi.DAL.YelpAPI
 
             if (results is null)
             {
-                throw new Exception("Search returned no results from the Yelp API.");
+                return new List<Restaurant>();
             }
 
             List<Restaurant> restaurantList = new List<Restaurant>();
