@@ -147,8 +147,12 @@ export default {
             credentials: 'same-origin',
             })
       .then((response) => {
+        if (response.ok) {
         return response.json();
-            })
+        }
+        else if (!response.ok) {
+          this.$router.push('/preferenceForm')
+        }})
             .then((restaurants) => {
                 this.restaurants = restaurants;
                 })
