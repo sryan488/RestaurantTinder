@@ -49,6 +49,10 @@
           <img :src="next.imgUrl" class="rounded-borders"/> 
         <div class="text">
             <h2>{{next.name}}</h2>
+            <div v-for="cash in next.maxPriceRange" v-bind:key="cash">
+            <span>$</span>
+            </div>
+
             <!-- <h2 color="white"> RESTAURANTS: {{restaurants[1].name}}</h2> -->
           </div>
       </div>
