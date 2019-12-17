@@ -40,7 +40,8 @@
     </div>
     <div
       v-if="next"
-      class="rounded-borders card card--two fixed fixed--center"
+      class="rounded-borders card card--two
+       fixed fixed--center"
       style="z-index: 2">
       <div style="height: 100%">
         <!-- <img
@@ -253,12 +254,12 @@ export default {
     box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   }
   &--two {
-    transform: translate(-48%, -48%);
+    transform: translate(-50%, -48%);
     box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
   }
   &--three {
     background: rgba(black, .8);
-    transform: translate(-46%, -46%);
+    transform: translate(-50%, -46%);
     box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
   }
   .text {
