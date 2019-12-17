@@ -149,7 +149,7 @@ export default {
             })
             .then((preference) => {
                 this.preference = preference;
-                this.form.searchText = "";
+                this.form.searchText = preference.searchText;
                 this.form.maxPriceRange = preference.maxPriceRange;
                 this.form.location = preference.location;
                 this.form.searchRadius = preference.searchRadius;
