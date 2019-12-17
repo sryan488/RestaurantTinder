@@ -264,15 +264,23 @@ export default {
   }
   .text {
     position: absolute;
+    text-align: left;
     bottom: 0;
     width: 100%;
     background:black;
     background:rgba(0,0,0,0.5);
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    text-indent: 20px;
+    padding-left: 10px;
+
     span {
+      color: rgb(0, 209, 0);
+      float: right;
       font-weight: normal;
+      margin-right: 5px;
+      padding-right: 1px;
+      font-size: 20px;
+      font-weight: 700;
     }
   }
 }

@@ -14,19 +14,19 @@ namespace SampleApi.DAL.Interfaces
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        List<Restaurant> GetFavorites(User user);
+        List<Restaurant> GetFavorites(int userId);
         /// <summary>
         /// Adds a restaurant to the database of user favorites.
         /// </summary>
         /// <param name="user"></param>
         /// <param name="restaurant"></param>
-        void AddFavorite(User user, Restaurant restaurant);
+        void AddFavorite(int userId, Restaurant restaurant);
         /// <summary>
         /// Removes a favorite from the database of the user's favorites.
         /// </summary>
         /// <param name="user"></param>
         /// <param name="restaurant"></param>
-        void RemoveFavorite(User user, Restaurant restaurant);
+        void RemoveFavorite(int userId, Restaurant restaurant);
         #endregion
 
         #region Blacklist
@@ -35,19 +35,19 @@ namespace SampleApi.DAL.Interfaces
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        List<Restaurant> GetBlacklist(User user);
+        List<Restaurant> GetBlacklist(int userId);
         /// <summary>
         /// Adds a restaurant to the user's blacklist in the database.
         /// </summary>
         /// <param name="user"></param>
         /// <param name="restaurant"></param>
-        void AddBlacklist(User user, Restaurant restaurant);
+        void AddBlacklist(int userId, Restaurant restaurant);
         /// <summary>
         /// Removes a restaurant from the user's blacklist in the database.
         /// </summary>
         /// <param name="user"></param>
         /// <param name="restaurant"></param>
-        void RemoveBlacklist(User user, Restaurant restaurant);
+        void RemoveBlacklist(int userId, Restaurant restaurant);
         #endregion
     }
 }
