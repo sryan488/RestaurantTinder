@@ -65,13 +65,10 @@
     </div>
     <div class="footer fixed">
       <div class="btn btn--decline" @click="reject">
-          <i class="material-icons">Reject</i>
-      </div>
-      <div class="btn btn--skip" @click="skip">
-          <i class="material-icons">Skip</i>
+          <i class="material-icons">Dislike</i>
       </div>
       <div class="btn btn--like" @click="match">
-          <i class="material-icons">Favorite</i>
+          <i class="material-icons">Like</i>
       </div>
       <!-- <div v-for="restaurant in restaurants" v-bind:key="restaurant">
         <p>NAME: {{restaurant.name}}</p>
@@ -202,19 +199,10 @@ export default {
     }
   }
   &--like {
-    background-color: red;
-    padding: .5rem;
-    color: white;
-    box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
-    i {
-      font-size: 32px;
-    }
+    color: green;
   }
   &--decline {
     color: red;
-  }
-  &--skip {
-    color: green;
   }
 }
 
