@@ -17,7 +17,7 @@ export default {
         }
     },
     created() {
-        //load the blacklist
+        //load the favorites
         fetch(`https://localhost:44392/api/test/GetFavorites`, {
             headers: {
             "Content-Type": 'application/json',
