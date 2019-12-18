@@ -112,13 +112,13 @@
 <script>
 import auth from '../auth';
 import favorites from "@/views/Favorites"
-import blacklist from "@/views/Blacklist";
+// import blacklist from "@/views/Blacklist";
 
 export default {
   name: 'preferenceForm',
   components: {
       favorites,
-      blacklist
+    //   blacklist
   },
   data() {
       return {
