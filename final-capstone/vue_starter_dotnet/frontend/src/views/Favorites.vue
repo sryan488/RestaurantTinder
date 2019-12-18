@@ -2,7 +2,7 @@
     <div>
         <h1>FAVORITES</h1>
         <ul v-for="restaurant in favoritesList" v-bind:key="restaurant" class="list-group">
-            <li class="list-group-item">{{restaurant.name}}</li>
+            <li class="list-group-item" >{{restaurant.name}}</li>
         </ul>
     </div>
 </template>

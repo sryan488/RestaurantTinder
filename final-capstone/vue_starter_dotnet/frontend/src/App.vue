@@ -42,7 +42,8 @@
 export default {
   name: 'appView',
   data(){
-    userName: ""
+    // TODO: 
+    // userName: ""
   },
   methods: {
           logOut(){

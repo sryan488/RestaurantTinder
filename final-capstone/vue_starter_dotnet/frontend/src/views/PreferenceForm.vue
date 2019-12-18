@@ -2,8 +2,8 @@
     <div>
         <p></p>
         <div class="row">
-            <div class="col-4">col-4</div>
-          <div class="card border-primary mb-3 text-center col-4" style="max-width: 30rem;">
+            <div class="col-sm-0 col-lg-4">col-4</div>
+          <div class="card border-primary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
               <div class="card-header"><h1><i class="fas fa-check"></i>  Preferences </h1></div>
 
 <!-- vvv We used these to check the info from the form object coming in from the API vvv -->
@@ -98,11 +98,11 @@
           </div> 
             </div>
                     <div class="row">
-            <div class="col-4">col-4</div>
+            <div class="col-sm-0 col-lg-4">col-4</div>
 
-<div class="card border-primary mb-3 text-center col-4" style="max-width: 30rem;">
+<div class="card border-primary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
     <favorites></favorites>
-    <blacklist></blacklist>
+    <p></p>
 </div>
                     </div>
  </div>
