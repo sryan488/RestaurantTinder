@@ -62,7 +62,7 @@
                 </h2> -->
                     <legend>Distance </legend>
                   <div class="form-group">
-                    <select class="custom-select">
+                    <select class="custom-select" v-model="form.searchRadius">
                     <option selected="">Distance</option>
                     <option value="5" name="searchRadius">5 mi</option>
                     <option value="10" name="searchRadius">10 mi</option>
@@ -94,16 +94,32 @@
                 </p>
             </div>
         </form>
-          </div> </div>
 
+          </div> 
+            </div>
+                    <div class="row">
+            <div class="col-4">col-4</div>
+
+<div class="card border-primary mb-3 text-center col-4" style="max-width: 30rem;">
+    <favorites></favorites>
+    <blacklist></blacklist>
+</div>
+                    </div>
  </div>
   
 </template>
 
 <script>
 import auth from '../auth';
+import favorites from "@/views/Favorites"
+import blacklist from "@/views/Blacklist";
+
 export default {
   name: 'preferenceForm',
+  components: {
+      favorites,
+      blacklist
+  },
   data() {
       return {
             preference: {},

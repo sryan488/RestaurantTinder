@@ -7,6 +7,9 @@ import Register from './views/Register.vue'
 import PreferenceForm from './views/PreferenceForm.vue'
 import Results from './views/Results.vue'
 import welcome from './views/welcome.vue'
+import Favorites from './views/Favorites.vue'
+import Blacklist from './views/Blacklist.vue'
+
 
 Vue.use(Router)
 
@@ -69,7 +72,24 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {   
+      path: "/favorites",
+      name: "favorites",
+      component: Favorites,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {   
+      path: "/blacklist",
+      name: "blacklist",
+      component: Blacklist,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
   ]
 })
 
