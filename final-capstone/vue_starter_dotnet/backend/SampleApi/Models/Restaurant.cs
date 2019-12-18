@@ -73,5 +73,7 @@ namespace SampleApi.Models
         public double Distance { get; set; } // in miles
 
         public string ImgUrl { get; set; }
+
+        public bool Liked { get; set; }
     }
 }

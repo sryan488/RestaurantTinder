@@ -209,7 +209,7 @@ namespace SampleApi.DAL.SQL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("DELETE FROM favorites WHERE users_id = @userID", conn);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM likesAndDislikes WHERE users_id = @userID", conn);
                     cmd.Parameters.AddWithValue("@userID", userId);
 
                     cmd.ExecuteNonQuery();
@@ -218,6 +218,29 @@ namespace SampleApi.DAL.SQL
             catch (SqlException)
             {
                 throw;
+            }
+        }
+        public List<Restaurant> GetSwipedRestaurants(int userId)
+        {
+            try
+            {
+                List<Restaurant> results = new List<Restaurant>();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from likesAndDislikes where users_id = @userID", conn);
+                    cmd.Parameters.AddWithValue("@userID", userId);
+                    conn.Open();
+                    SqlDataReader data = cmd.ExecuteReader();
+                    while (data.Read())
+                    {
+                        results.Add(ConvertDataRowToRestaurant(data));
+                    }
+                    return results;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw e;
             }
         }
         #endregion
@@ -233,7 +256,7 @@ namespace SampleApi.DAL.SQL
         }
         private Restaurant ConvertDataRowToRestaurant(SqlDataReader data)
         {
-            return new Restaurant()
+            var result = new Restaurant()
             {
                 RestaurantID = Convert.ToString(data["restaurant_id"]),
                 Name = Convert.ToString(data["name"]),
@@ -242,8 +265,18 @@ namespace SampleApi.DAL.SQL
                 State = Convert.ToString(data["state"]),
                 ZIP = Convert.ToString(data["zip"]),
                 Categories = StringToCategories(Convert.ToString(data["categories"])),
-                ImgUrl = Convert.ToString(data["img_url"])
+                ImgUrl = Convert.ToString(data["img_url"]),
             };
+            try
+            {
+                result.Liked = Convert.ToBoolean(data["is_liked"]);
+            }
+            catch
+            {
+
+            }
+
+            return result;
         }
         #endregion
     }

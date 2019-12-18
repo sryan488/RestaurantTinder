@@ -77,6 +77,12 @@ namespace SampleApi.Controllers
             listsDAO.ClearUserSwipes(user_id);
             return NoContent();
         }
+        [HttpGet("GetSwipes")]
+        public ActionResult<List<Restaurant>> GetSwipes()
+        {
+            int user_id = GetCurrentUserId();
+            return listsDAO.GetSwipedRestaurants(user_id);
+        }
         #endregion
 
         #region Favorites
