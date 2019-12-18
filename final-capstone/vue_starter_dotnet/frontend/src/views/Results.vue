@@ -84,7 +84,6 @@ import auth from '../auth';
 import { Vue2InteractDraggable, InteractEventBus } from 'vue2-interact'
 const EVENTS = {
   MATCH: 'match',
-  SKIP: 'skip',
   REJECT: 'reject'
 }
 
@@ -116,29 +115,29 @@ export default {
     next() {
       return this.restaurants[this.index + 1]
     },
-    checkFavorite() {
-      for(let i = 0; i < this.favoritesList.length; i++) {
-      if (this.favoritesList[i].restaurantID == this.current.restaurantID){
-        return this.isFavorite = true;
-          }
-      }
-        return false;
-    }
   },
   methods: {
     match() {
-      InteractEventBus.$emit(EVENTS.MATCH)
+      console.log("match");
+      InteractEventBus.$emit(EVENTS.MATCH);
+      this.checkFavorite();
     },
     reject() {
-      InteractEventBus.$emit(EVENTS.REJECT)
+      console.log("reject");
+      InteractEventBus.$emit(EVENTS.REJECT);
+      this.checkFavorite();
     },
     emitAndNext(event) {
+      console.log("emit and next");
+      this.checkFavorite(this.next.restaurantID);
       this.$emit(event, this.index)
       setTimeout(() => this.isVisible = false, 200)
       setTimeout(() => {
         this.index++
         this.isVisible = true
       }, 200)
+    },
+    getFavorites(){
     },
       makeFavorite(){
         return fetch(`https://localhost:44392/api/test/AddFavorite`, {
@@ -169,68 +168,64 @@ export default {
             if (response.ok) {
               this.isFavorite = false;
             }})
+      },
+    populateRestaurants(){
+          fetch(`https://localhost:44392/api/test/GetRestaurants`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+              .then((response) => {
+                if (response.ok) {
+                return response.json();
+                }
+                else if (!response.ok) {
+                  this.$router.push('/preferenceForm')
+                }})
+                    .then((restaurants) => {
+                        this.restaurants = restaurants;
+                        this.populateFavorites();
+                        })
+                          .catch((err) => console.error(err));
+    },
+    populateFavorites(){
+          fetch(`https://localhost:44392/api/test/GetFavorites`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+              .then((response) => {
+                  if (response.ok) {
+                      return response.json();
+                    }
+              })
+                .then((favoritesList) => {
+                    this.favoritesList = favoritesList;
+                    this.checkFavorite(this.current.restaurantID);
+                        })
+                          .catch((err) => console.error(err));
+    },
+        checkFavorite(restaurantID) {
+      this.isFavorite = false;
+      console.log("it at least made it to check favorite");
+      for(let i = 0; i < this.favoritesList.length; i++){
+              if (this.favoritesList[i].restaurantID === restaurantID){
+                this.isFavorite = true;
+                console.log("checked favorites: true");
+                return;
+            } 
       }
-
-  },
-
-  created() {
-    // load the restaurants
-    fetch(`https://localhost:44392/api/test/GetRestaurants`, {
-            headers: {
-            "Content-Type": 'application/json',
-            Authorization: 'Bearer ' + auth.getToken(),
-            },
-            credentials: 'same-origin',
-            })
-      .then((response) => {
-        if (response.ok) {
-        return response.json();
-        }
-        else if (!response.ok) {
-          this.$router.push('/preferenceForm')
-        }})
-            .then((restaurants) => {
-                this.restaurants = restaurants;
-                })
-                .catch((err) => console.error(err));
-
-                        fetch(`https://localhost:44392/api/test/GetFavorites`, {
-            headers: {
-            "Content-Type": 'application/json',
-            Authorization: 'Bearer ' + auth.getToken(),
-            },
-            credentials: 'same-origin',
-            })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                })
-                    .then((favoritesList) => {
-                        this.favoritesList = favoritesList;
-                        })
-
-  },
-      created2() {
-        //load the favorites
-        fetch(`https://localhost:44392/api/test/GetFavorites`, {
-            headers: {
-            "Content-Type": 'application/json',
-            Authorization: 'Bearer ' + auth.getToken(),
-            },
-            credentials: 'same-origin',
-            })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                })
-                    .then((favoritesList) => {
-                        this.favoritesList = favoritesList;
-                        })
-                        .catch((err) => console.error(err));
+          console.log("finished for loop");
     }
+},
+  mounted() {
+    this.populateRestaurants();
   }
+}
 </script>
 
 <style lang="scss" scoped>
