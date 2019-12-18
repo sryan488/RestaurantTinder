@@ -18,16 +18,17 @@
         interact-block-drag-down
         @draggedRight="emitAndNext('match')"
         @draggedLeft="emitAndNext('reject')"
-        @draggedUp="emitAndNext('skip')"
         class="rounded-borders card card--one">
         <div style="height: 100%">
           <!-- <img
             :src="require(`${current.imgUrl}`)"
             class="rounded-borders"/> -->
           <img :src="current.imgUrl" class="rounded-borders"/> 
-
           <div class="text">
+            
             <h2>{{current.name}}</h2>
+        <i class="far fa-star" v-if="!isFavorite" v-on:click="makeFavorite"></i>
+        <i class="fas fa-star" v-if="isFavorite" ></i>
             <div v-for="cash in current.maxPriceRange" v-bind:key="cash">
             <span>$</span>
             </div>
@@ -93,6 +94,7 @@ export default {
   data() {
     return {
       isVisible: true,
+      isFavorite: false,
       index: 0,
       interactEventBus: {
         draggedRight: EVENTS.MATCH,
@@ -132,7 +134,22 @@ export default {
         this.index++
         this.isVisible = true
       }, 200)
-    }
+    },
+      makeFavorite(){
+        return fetch(`https://localhost:44392/api/test/AddFavorite`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(this.form)
+        })
+        .then((response) => {
+            if (response.ok) {
+              this.isFavorite = true;
+            }})
+      }
   },
   created() {
     // load the restaurants
@@ -272,6 +289,16 @@ export default {
       font-size: 20px;
       font-weight: 700;
     }
+
+    i {
+      
+      float: left;
+      color: yellow;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+
   }
 }
 
