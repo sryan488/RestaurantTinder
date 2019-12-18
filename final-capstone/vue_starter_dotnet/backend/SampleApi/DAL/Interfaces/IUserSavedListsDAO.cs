@@ -54,6 +54,8 @@ namespace SampleApi.DAL.Interfaces
         void Swiped(int userId, Restaurant restaurant, bool swipedRight);
 
         void ClearUserSwipes(int userId);
+
+        List<Restaurant> GetSwipedRestaurants(int userId);
         #endregion
     }
 }
