@@ -62,7 +62,7 @@
                 </h2> -->
                     <legend>Distance </legend>
                   <div class="form-group">
-                    <select class="custom-select">
+                    <select class="custom-select" v-model="form.searchRadius">
                     <option selected="">Distance</option>
                     <option value="5" name="searchRadius">5 mi</option>
                     <option value="10" name="searchRadius">10 mi</option>
@@ -105,7 +105,6 @@
     <blacklist></blacklist>
 </div>
                     </div>
-    </div>
  </div>
   
 </template>

@@ -41,13 +41,15 @@
 
 export default {
   name: 'appView',
+  data(){
+    userName: ""
+  },
   methods: {
           logOut(){
           localStorage.clear();
           this.$router.push('/');
 
       }
-
   }
 }
 </script>

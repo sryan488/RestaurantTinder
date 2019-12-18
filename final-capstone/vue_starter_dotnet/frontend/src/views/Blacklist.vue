@@ -1,13 +1,14 @@
 <template>
     <div>
         <h1>BLACKLIST</h1>
-        <div v-for="restaurant in blacklist" v-bind:key="restaurant">
-
-        </div>
+        <ul v-for="restaurant in blacklist" v-bind:key="restaurant">
+            <li>{{restaurant.name}}</li>
+        </ul>
     </div>
 </template>
 
 <script>
+import auth from '../auth';
 export default {
     name: 'blacklist.vue',
     data() {
