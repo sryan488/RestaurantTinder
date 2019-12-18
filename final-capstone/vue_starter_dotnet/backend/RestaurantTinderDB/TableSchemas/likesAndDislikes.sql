@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[likesAndDislikes]
 (
-	[swipe_id] INT NOT NULL , 
+	[swipe_id] INT NULL , 
     [users_id] INT NOT NULL, 
     [is_like] BIT NOT NULL, 
     [restaurant_id] VARCHAR(75) NOT NULL,

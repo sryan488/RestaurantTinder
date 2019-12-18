@@ -144,8 +144,20 @@ export default {
         })
         .then((response) => {
             if (response.ok) {
-                this.$router.push('/results')
+                this.$router.push('/results');
+                this.clearSwipes();
             }})
+      },
+      clearSwipes(){
+                  return fetch(`https://localhost:44392/api/test/ClearSwipes`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(this.current)
+        })
       }
   },
     created() {

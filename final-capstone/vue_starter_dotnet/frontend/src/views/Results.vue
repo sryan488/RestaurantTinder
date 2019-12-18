@@ -16,8 +16,8 @@
         :interact-y-threshold="200"
         :interact-event-bus-events="interactEventBus"
         interact-block-drag-down
-        @draggedRight="emitAndNext('match')"
-        @draggedLeft="emitAndNext('reject')"
+        @draggedRight="emitAndNext('match'); swipeRight()"
+        @draggedLeft="emitAndNext('reject'); swipeLeft()"
         class="rounded-borders card card--one">
         <div style="height: 100%">
           <!-- <img
@@ -65,10 +65,10 @@
       </div>
     </div>
     <div class="footer fixed">
-      <div class="btn btn--decline" @click="reject">
+      <div class="btn btn--decline" @click="reject; swipeRight()">
           <i class="material-icons">Dislike</i>
       </div>
-      <div class="btn btn--like" @click="match">
+      <div class="btn btn--like" @click="match; swipeLeft()">
           <i class="material-icons">Like</i>
       </div>
       <!-- <div v-for="restaurant in restaurants" v-bind:key="restaurant">
@@ -220,6 +220,28 @@ export default {
             } 
       }
           console.log("finished for loop");
+    },
+    swipeRight(){
+        return fetch(`https://localhost:44392/api/test/SwipeRight`, {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(this.current)
+  })
+    },
+    swipeLeft(){
+          return fetch(`https://localhost:44392/api/test/SwipeLeft`, {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(this.current)
+  })
     }
 },
   mounted() {
