@@ -49,5 +49,11 @@ namespace SampleApi.DAL.Interfaces
         /// <param name="restaurant"></param>
         void RemoveBlacklist(int userId, Restaurant restaurant);
         #endregion
+
+        #region Likes and Dislikes
+        void Swiped(int userId, Restaurant restaurant, bool swipedRight);
+
+        void ClearUserSwipes(int userId);
+        #endregion
     }
 }

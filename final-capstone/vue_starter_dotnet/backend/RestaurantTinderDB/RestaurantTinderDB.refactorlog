@@ -70,4 +70,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="categories" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3906c986-149f-4cae-98cf-3d7d96d6e929" ChangeDateTime="12/18/2019 14:33:05">
+    <Property Name="ElementName" Value="[dbo].[likesAndDislikes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[likesAndDislikes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="swipe_id" />
+  </Operation>
 </Operations>

@@ -65,6 +65,7 @@
     <Build Include="TableSchemas\favorites.sql" />
     <Build Include="TableSchemas\preferences.sql" />
     <Build Include="TableSchemas\users.sql" />
+    <Build Include="TableSchemas\likesAndDislikes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RestaurantTinderDB.refactorlog" />

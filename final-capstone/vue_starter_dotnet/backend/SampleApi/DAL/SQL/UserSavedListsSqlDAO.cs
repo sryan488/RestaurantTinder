@@ -170,6 +170,58 @@ namespace SampleApi.DAL.SQL
         }
         #endregion
 
+        #region Likes And Dislikes
+        public void Swiped(int userId, Restaurant restaurant, bool swipedRight)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO likesAndDislikes (users_id, restaurant_id, name, address, city, state, zip, categories, img_url, is_like) 
+                                                      VALUES (@userID, @restaurantID, @name, @address, @city, @state, @zip, @categories, @img, @isLike)"
+                        , conn);
+                    cmd.Parameters.AddWithValue("@restaurantID", restaurant.RestaurantID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
+                    cmd.Parameters.AddWithValue("@name", restaurant.Name);
+                    cmd.Parameters.AddWithValue("@address", restaurant.Address);
+                    cmd.Parameters.AddWithValue("@city", restaurant.City);
+                    cmd.Parameters.AddWithValue("@state", restaurant.State);
+                    cmd.Parameters.AddWithValue("@zip", restaurant.ZIP);
+                    cmd.Parameters.AddWithValue("@categories", CategoriesToString(restaurant.Categories));
+                    cmd.Parameters.AddWithValue("@img", restaurant.ImgUrl);
+                    cmd.Parameters.AddWithValue("@isLike", swipedRight);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+        public void ClearUserSwipes(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("DELETE FROM favorites WHERE users_id = @userID", conn);
+                    cmd.Parameters.AddWithValue("@userID", userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+        #endregion
+
         #region Internal functions
         private string CategoriesToString(List<string> categories)
         {

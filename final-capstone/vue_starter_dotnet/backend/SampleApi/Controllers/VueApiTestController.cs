@@ -55,6 +55,30 @@ namespace SampleApi.Controllers
         }
         #endregion
 
+        #region Swipes
+        [HttpPost("SwipeLeft")]
+        public ActionResult SwipeLeft(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.Swiped(user_id, restaurant, false);
+            return Ok();
+        }
+        [HttpPost("SwipeRight")]
+        public ActionResult SwipeRight(Restaurant restaurant)
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.Swiped(user_id, restaurant, true);
+            return Ok();
+        }
+        [HttpDelete("ClearSwipes")]
+        public ActionResult ClearSwipes()
+        {
+            int user_id = GetCurrentUserId();
+            listsDAO.ClearUserSwipes(user_id);
+            return NoContent();
+        }
+        #endregion
+
         #region Favorites
         [HttpGet("GetFavorites")]
         public List<Restaurant> GetFavorites()
