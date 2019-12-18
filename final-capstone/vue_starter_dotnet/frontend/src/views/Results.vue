@@ -97,8 +97,7 @@ export default {
       index: 0,
       interactEventBus: {
         draggedRight: EVENTS.MATCH,
-        draggedLeft: EVENTS.REJECT,
-        draggedUp: EVENTS.SKIP
+        draggedLeft: EVENTS.REJECT
       },
       cards: [
         { src: '1.jpg', name: 'Karina', age: 7 },
@@ -107,6 +106,7 @@ export default {
       ],
       restaurants: [],
       favoritesList: [],
+      isFavorite: false
     }
   },
   computed: {
@@ -116,10 +116,10 @@ export default {
     next() {
       return this.restaurants[this.index + 1]
     },
-    isFavorite() {
-      for(let i = 0; i < favoritesList.length; i++) {
+    checkFavorite() {
+      for(let i = 0; i < this.favoritesList.length; i++) {
       if (this.favoritesList[i].restaurantID == this.current.restaurantID){
-        return true;
+        return this.isFavorite = true;
           }
       }
         return false;
@@ -131,9 +131,6 @@ export default {
     },
     reject() {
       InteractEventBus.$emit(EVENTS.REJECT)
-    },
-    skip() {
-      InteractEventBus.$emit(EVENTS.SKIP)
     },
     emitAndNext(event) {
       this.$emit(event, this.index)
