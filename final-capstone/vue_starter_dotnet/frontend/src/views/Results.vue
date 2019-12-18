@@ -28,7 +28,7 @@
             
             <h2>{{current.name}}</h2>
         <i class="far fa-star" v-if="!isFavorite" v-on:click="makeFavorite"></i>
-        <i class="fas fa-star" v-if="isFavorite" ></i>
+        <i class="fas fa-star" v-if="isFavorite" v-on:click="unFavorite"></i>
             <div v-for="cash in current.maxPriceRange" v-bind:key="cash">
             <span>$</span>
             </div>
@@ -94,7 +94,6 @@ export default {
   data() {
     return {
       isVisible: true,
-      isFavorite: false,
       index: 0,
       interactEventBus: {
         draggedRight: EVENTS.MATCH,
@@ -106,7 +105,8 @@ export default {
         { src: '2.jpg', name: 'Alexander', age: 5 },
         { src: '3.jpg', name: 'Bona', age: 3 },
       ],
-      restaurants: []
+      restaurants: [],
+      favoritesList: [],
     }
   },
   computed: {
@@ -115,6 +115,14 @@ export default {
     },
     next() {
       return this.restaurants[this.index + 1]
+    },
+    isFavorite() {
+      for(let i = 0; i < favoritesList.length; i++) {
+      if (this.favoritesList[i].restaurantID == this.current.restaurantID){
+        return true;
+          }
+      }
+        return false;
     }
   },
   methods: {
@@ -137,20 +145,37 @@ export default {
     },
       makeFavorite(){
         return fetch(`https://localhost:44392/api/test/AddFavorite`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
                 Authorization: 'Bearer ' + auth.getToken(),
             },
             credentials: 'same-origin',
-            body: JSON.stringify(this.form)
+            body: JSON.stringify(this.current)
         })
         .then((response) => {
             if (response.ok) {
               this.isFavorite = true;
             }})
+      },
+      unFavorite(){
+        return fetch(`https://localhost:44392/api/test/RemoveFavorite`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(this.current)
+        })
+        .then((response) => {
+            if (response.ok) {
+              this.isFavorite = false;
+            }})
       }
+
   },
+
   created() {
     // load the restaurants
     fetch(`https://localhost:44392/api/test/GetRestaurants`, {
@@ -171,8 +196,44 @@ export default {
                 this.restaurants = restaurants;
                 })
                 .catch((err) => console.error(err));
+
+                        fetch(`https://localhost:44392/api/test/GetFavorites`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                })
+                    .then((favoritesList) => {
+                        this.favoritesList = favoritesList;
+                        })
+
+  },
+      created2() {
+        //load the favorites
+        fetch(`https://localhost:44392/api/test/GetFavorites`, {
+            headers: {
+            "Content-Type": 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+            },
+            credentials: 'same-origin',
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                })
+                    .then((favoritesList) => {
+                        this.favoritesList = favoritesList;
+                        })
+                        .catch((err) => console.error(err));
+    }
   }
-}
 </script>
 
 <style lang="scss" scoped>
