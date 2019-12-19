@@ -269,7 +269,7 @@ namespace SampleApi.DAL.SQL
             };
             try
             {
-                result.Liked = Convert.ToBoolean(data["is_liked"]);
+                result.Liked = Convert.ToBoolean(data["is_like"]);
             }
             catch
             {
