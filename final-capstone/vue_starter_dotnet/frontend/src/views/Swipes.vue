@@ -1,14 +1,21 @@
 <template> 
 <div>
+<div class="row">
+<div class="col-sm-0 col-lg-4">col-4</div>
+
+<div class="card border-primary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
     <h1>LIKES</h1>
-    <ul v-for="restaurants in rightSwipes" v-bind:key="restaurants" class="list-group">
-        <li class="list-group-item">{{restaurants.name}}</li>
+    <ul v-for="restaurants in swipes" v-bind:key="restaurants" class="list-group">
+        <li v-if="restaurants.liked === true" class="list-group-item">{{restaurants.name}}</li>
     </ul>
     <h1>DISLIKES</h1>
-    <ul v-for="restaurants in leftSwipes" v-bind:key="restaurants" class="list-group">
-        <li class="list-group-item">{{restaurants.name}}</li>
+    <ul v-for="restaurants in swipes" v-bind:key="restaurants" class="list-group">
+        <li v-if="restaurants.liked === false" class="list-group-item">{{restaurants.name}}</li>
     </ul>
+</div>
 
+<div class="col-sm-0 col-lg-4">col-4</div>
+</div>
 </div>
 </template>
 
@@ -22,6 +29,9 @@ name: 'swipes.vue',
             rightSwipes: [],
             leftSwipes: []
         }
+    },
+    computed: {
+
     },
     methods: {
         populateSwipes(){

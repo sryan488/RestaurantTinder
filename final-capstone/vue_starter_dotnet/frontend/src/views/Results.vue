@@ -68,6 +68,7 @@
       <div class="btn btn--decline" @click="reject; swipeRight()">
           <i class="material-icons">Dislike</i>
       </div>
+        <router-link :to="{ name: 'swipes' }"><button type="button" class="btn ">Likes & Dislikes </button></router-link>
       <div class="btn btn--like" @click="match; swipeLeft()">
           <i class="material-icons">Like</i>
       </div>
