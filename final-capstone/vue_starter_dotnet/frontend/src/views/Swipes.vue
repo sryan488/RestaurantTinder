@@ -1,11 +1,11 @@
 <template> 
 <div>
-    <h1>RIGHT SWIPES</h1>
-    <ul v-for="restaurants in rightSwipes" v-bind:key="restaurants">
+    <h1>LIKES</h1>
+    <ul v-for="restaurants in rightSwipes" v-bind:key="restaurants" class="list-group">
         <li class="list-group-item">{{restaurants.name}}</li>
     </ul>
-    <h1>LEFT SWIPES</h1>
-    <ul v-for="restaurants in leftSwipes" v-bind:key="restaurants">
+    <h1>DISLIKES</h1>
+    <ul v-for="restaurants in leftSwipes" v-bind:key="restaurants" class="list-group">
         <li class="list-group-item">{{restaurants.name}}</li>
     </ul>
 
@@ -61,7 +61,7 @@ name: 'swipes.vue',
         }
     }
     },
-    mounted(){
+    created(){
         this.populateSwipes();
     }
 }
