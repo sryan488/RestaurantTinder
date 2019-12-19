@@ -64,7 +64,7 @@ CREATE TABLE [dbo].[favorites]
 )
 CREATE TABLE [dbo].[likesAndDislikes]
 (
-	[swipe_id] INT NOT NULL , 
+	[swipe_id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [users_id] INT NOT NULL, 
     [is_like] BIT NOT NULL, 
     [restaurant_id] VARCHAR(75) NOT NULL,
@@ -75,7 +75,6 @@ CREATE TABLE [dbo].[likesAndDislikes]
     [zip] VARCHAR(20) NULL, 
     [categories] VARCHAR(MAX) NULL, 
     [img_url] VARCHAR(MAX) NULL,
-    PRIMARY KEY ([swipe_id]), 
     CONSTRAINT [FK_likesAndDislikes_users] FOREIGN KEY (users_id) REFERENCES users(Id)
 )
 
