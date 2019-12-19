@@ -17,10 +17,10 @@
         
       </li>
     </ul>
-    <span v-if="['results', 'preferenceForm', 'welcome'].includes($route.name)">
+    <span v-if="['results', 'preferenceForm', 'welcome', 'swipes'].includes($route.name)">
       
       <router-link :to="{ name: 'preferenceForm' }"><button type="button" class="btn btn-warning pull-sm-right">New Search <i class="fas fa-pizza-slice"></i></button></router-link>
-      &nbsp;<router-link :to="{ name: 'results' }"><button type="button" class="btn btn-danger">Repeat Last Search <i class="fas fa-drumstick-bite"></i></button></router-link>
+      &nbsp;<router-link :to="{ name: 'results' }"><button type="button" class="btn btn-danger" v-on:click="clearSwipes()">Repeat Last Search <i class="fas fa-drumstick-bite"></i></button></router-link>
       &nbsp;<button class="btn btn-secondary my-2 my-sm-0" v-on:click="logOut">Log Out <i class="fas fa-sign-out-alt"></i></button>
     </span>
   </div>
@@ -52,8 +52,19 @@ export default {
           logOut(){
           localStorage.clear();
           this.$router.push('/');
+      },
+        clearSwipes(){
+          return fetch(`https://localhost:44392/api/test/ClearSwipes`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: 'Bearer ' + auth.getToken(),
+            },
+              credentials: 'same-origin',
+              body: JSON.stringify(this.current)
+    })
+  },
 
-      }
   }
 }
 </script>

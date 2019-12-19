@@ -68,7 +68,7 @@
       <div class="btn btn--decline" @click="reject; swipeRight()">
           <i class="material-icons">Dislike</i>
       </div>
-        <router-link :to="{ name: 'swipes' }"><button type="button" class="btn ">Likes & Dislikes </button></router-link>
+        <router-link :to="{ name: 'swipes' }"><button type="button" class="btn ">DONE</button></router-link>
       <div class="btn btn--like" @click="match; swipeLeft()">
           <i class="material-icons">Like</i>
       </div>
@@ -243,10 +243,23 @@ export default {
       credentials: 'same-origin',
       body: JSON.stringify(this.current)
   })
-    }
+    },
+    clearSwipes(){
+        return fetch(`https://localhost:44392/api/test/ClearSwipes`, {
+      method: 'DELETE',
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: 'Bearer ' + auth.getToken(),
+      },
+        credentials: 'same-origin',
+        body: JSON.stringify(this.current)
+    })
+  },
+
 },
   mounted() {
     this.populateRestaurants();
+    this.clearSwipes();
   }
 }
 </script>
