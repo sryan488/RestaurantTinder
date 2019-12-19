@@ -9,6 +9,7 @@ import Results from './views/Results.vue'
 import welcome from './views/welcome.vue'
 import Favorites from './views/Favorites.vue'
 import Blacklist from './views/Blacklist.vue'
+import Swipes from './views/Swipes.vue'
 
 
 Vue.use(Router)
@@ -89,6 +90,23 @@ const router = new Router({
         requiresAuth: true
       }
     },
+        {   
+      path: "/blacklist",
+      name: "blacklist",
+      component: Blacklist,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {   
+      path: "/swipes",
+      name: "swipes",
+      component: Swipes,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
 
   ]
 })

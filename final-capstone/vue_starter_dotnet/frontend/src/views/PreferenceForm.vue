@@ -104,6 +104,11 @@
     <favorites></favorites>
     <p></p>
 </div>
+<div class="card border-primary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
+    <swipes></swipes>
+    <p></p>
+</div>
+
                     </div>
  </div>
   
@@ -111,13 +116,16 @@
 
 <script>
 import auth from '../auth';
-import favorites from "@/views/Favorites"
+import favorites from "@/views/Favorites";
+import swipes from "@/views/Swipes";
+
 // import blacklist from "@/views/Blacklist";
 
 export default {
   name: 'preferenceForm',
   components: {
       favorites,
+      swipes,
     //   blacklist
   },
   data() {

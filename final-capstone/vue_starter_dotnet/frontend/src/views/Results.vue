@@ -209,7 +209,7 @@ export default {
                         })
                           .catch((err) => console.error(err));
     },
-        checkFavorite(restaurantID) {
+    checkFavorite(restaurantID) {
       this.isFavorite = false;
       console.log("it at least made it to check favorite");
       for(let i = 0; i < this.favoritesList.length; i++){
