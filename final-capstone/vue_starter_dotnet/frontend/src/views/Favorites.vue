@@ -18,7 +18,7 @@ export default {
     },
     created() {
         //load the favorites
-        fetch(`https://localhost:44392/api/test/GetFavorites`, {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/test/GetFavorites`, {
             headers: {
             "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),

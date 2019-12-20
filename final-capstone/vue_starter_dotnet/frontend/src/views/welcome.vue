@@ -2,8 +2,8 @@
 <div>
   <p></p>
         <div class="row">
-            <div class="col-4"></div>
-          <div class="card border-secondary mb-3 text-center col-4" style="max-width: 30rem;">
+            <div class="col-sm-0 col-lg-4"></div>
+          <div class="card border-secondary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
   <div class="welcome">
     <h1>Home</h1>
     <div class="alert alert-dismissible alert-success">

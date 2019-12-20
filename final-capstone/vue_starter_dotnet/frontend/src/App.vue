@@ -41,7 +41,7 @@
 </template>
 
 <script>
-
+import auth from './auth';
 export default {
   name: 'appView',
   data(){
@@ -54,7 +54,7 @@ export default {
           this.$router.push('/');
       },
         clearSwipes(){
-          return fetch(`https://localhost:44392/api/test/ClearSwipes`, {
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/test/ClearSwipes`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

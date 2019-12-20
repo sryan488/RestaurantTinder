@@ -18,7 +18,7 @@ export default {
     },
     created() {
         //load the blacklist
-        fetch(`https://localhost:44392/api/test/GetBlacklist`, {
+        fetch(`${process.env.VUE_APP_REMOTE_API}/test/GetBlacklist`, {
         headers: {
         "Content-Type": 'application/json',
         Authorization: 'Bearer ' + auth.getToken(),

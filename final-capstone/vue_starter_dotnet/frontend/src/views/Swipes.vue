@@ -1,7 +1,7 @@
 <template> 
 <div>
 <div class="row">
-<div class="col-sm-0 col-lg-4">col-4</div>
+<div class="col-sm-0 col-lg-4"></div>
 
 <div class="card border-primary mb-3 text-center col-sm-12 col-lg-4" style="max-width: 30rem;">
     <h1>LIKES</h1>
@@ -21,7 +21,7 @@
 
 </div>
 
-<div class="col-sm-0 col-lg-4">col-4</div>
+<div class="col-sm-0 col-lg-4"></div>
 
 </div>
 </div>
@@ -48,7 +48,7 @@ name: 'swipes.vue',
     },
     methods: {
         populateSwipes(){
-            fetch(`https://localhost:44392/api/test/GetSwipes`, {
+            fetch(`${process.env.VUE_APP_REMOTE_API}/test/GetSwipes`, {
             headers: {
             "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),

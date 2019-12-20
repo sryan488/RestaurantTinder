@@ -141,7 +141,7 @@ export default {
     getFavorites(){
     },
       makeFavorite(){
-        return fetch(`https://localhost:44392/api/test/AddFavorite`, {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/test/AddFavorite`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -156,7 +156,7 @@ export default {
             }})
       },
       unFavorite(){
-        return fetch(`https://localhost:44392/api/test/RemoveFavorite`, {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/test/RemoveFavorite`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
@@ -171,7 +171,7 @@ export default {
             }})
       },
     populateRestaurants(){
-          fetch(`https://localhost:44392/api/test/GetRestaurants`, {
+          fetch(`${process.env.VUE_APP_REMOTE_API}/test/GetRestaurants`, {
             headers: {
             "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),
@@ -192,7 +192,7 @@ export default {
                           .catch((err) => console.error(err));
     },
     populateFavorites(){
-          fetch(`https://localhost:44392/api/test/GetFavorites`, {
+          fetch(`${process.env.VUE_APP_REMOTE_API}/test/GetFavorites`, {
             headers: {
             "Content-Type": 'application/json',
             Authorization: 'Bearer ' + auth.getToken(),
@@ -223,7 +223,7 @@ export default {
           console.log("finished for loop");
     },
     swipeRight(){
-        return fetch(`https://localhost:44392/api/test/SwipeRight`, {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/test/SwipeRight`, {
       method: 'POST',
       headers: {
           "Content-Type": "application/json",
@@ -234,7 +234,7 @@ export default {
   })
     },
     swipeLeft(){
-          return fetch(`https://localhost:44392/api/test/SwipeLeft`, {
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/test/SwipeLeft`, {
       method: 'POST',
       headers: {
           "Content-Type": "application/json",
@@ -245,7 +245,7 @@ export default {
   })
     },
     clearSwipes(){
-        return fetch(`https://localhost:44392/api/test/ClearSwipes`, {
+        return fetch(`${process.env.VUE_APP_REMOTE_API}/test/ClearSwipes`, {
       method: 'DELETE',
       headers: {
           "Content-Type": "application/json",
